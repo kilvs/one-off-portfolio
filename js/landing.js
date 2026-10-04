@@ -19,20 +19,49 @@
   const state = { meme: true, warp: false, gravity: false, boost: 0, dy: 0 };
   const mm = gsap.matchMedia();
 
-  /* ---------------- Toasts ---------------- */
+  /* ---------------- Toasts (Sonner-style stack) ---------------- */
   const toastList = $("[data-toasts]");
   const toastSeen = new Set();
+  let toastsExpanded = false;
+  const TOAST_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9.94 14.06 4 20M14 4l1.5 3.5L19 9l-3.5 1.5L14 14l-1.5-3.5L9 9l3.5-1.5Z"/></svg>';
+  const CLOSE_ICON = '<svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>';
+  function layoutToasts() {
+    const items = Array.from(toastList.children).filter((t) => !t.classList.contains("is-leaving")).reverse();
+    let offset = 0;
+    items.forEach((el, i) => {
+      el.style.zIndex = String(20 - i);
+      gsap.to(el, {
+        y: toastsExpanded ? -offset : -i * 14,
+        scale: toastsExpanded ? 1 : 1 - i * 0.05,
+        autoAlpha: i > 2 ? 0 : 1,
+        duration: reduce ? 0 : 0.4, ease: "power3.out", overwrite: "auto",
+      });
+      offset += el.offsetHeight + 12;
+    });
+    toastList.style.height = items.length ? `${toastsExpanded ? offset : items[0].offsetHeight + 28}px` : "0px";
+  }
+  function dismissToast(el) {
+    if (el.classList.contains("is-leaving")) return;
+    el.classList.add("is-leaving");
+    gsap.killTweensOf(el);
+    gsap.to(el, { y: "+=24", autoAlpha: 0, duration: reduce ? 0 : 0.25, onComplete: () => { el.remove(); layoutToasts(); } });
+    layoutToasts();
+  }
+  toastList.addEventListener("pointerenter", () => { toastsExpanded = true; layoutToasts(); });
+  toastList.addEventListener("pointerleave", () => { toastsExpanded = false; layoutToasts(); });
   function toast(text, once) {
     if (once) { if (toastSeen.has(once)) return; toastSeen.add(once); }
     const el = document.createElement("div");
     el.className = "toast";
-    el.innerHTML = '<span class="toast_icon"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7Z"/></svg></span><span></span>';
-    el.lastElementChild.textContent = text;
+    el.innerHTML = `<span class="toast_icon" aria-hidden="true">${TOAST_ICON}</span><span class="toast_text"></span><button type="button" class="toast_close" aria-label="Dismiss">${CLOSE_ICON}</button>`;
+    el.querySelector(".toast_text").textContent = text;
+    el.querySelector(".toast_close").addEventListener("click", () => dismissToast(el));
     toastList.append(el);
-    const max = innerWidth < 768 ? 1 : 3;
-    while (toastList.children.length > max) toastList.firstElementChild.remove();
-    gsap.fromTo(el, { x: -40, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: reduce ? 0 : 0.5, ease: "back.out(1.6)" });
-    gsap.to(el, { x: -40, autoAlpha: 0, duration: 0.4, delay: 4.5, onComplete: () => el.remove() });
+    gsap.set(el, { y: 60, autoAlpha: 0 });
+    layoutToasts();
+    let timer = gsap.delayedCall(4.5, function check() { if (toastsExpanded) timer.restart(true); else dismissToast(el); });
+    const live = Array.from(toastList.children).filter((t) => !t.classList.contains("is-leaving"));
+    if (live.length > 4) dismissToast(live[0]);
   }
   const memeToast = (text, once) => { if (state.meme) toast(text, once); };
 
@@ -242,7 +271,7 @@
       burger.setAttribute("aria-label", "Close menu");
       setLabel();
       loops.forEach((l) => l.play());
-      toastList.replaceChildren();
+      Array.from(toastList.children).forEach(dismissToast);
       memeToast("Hyperdrive engaged. Mind the wormhole.", "menu");
       tl?.kill();
       if (reduce) { links[0].focus(); return; }
@@ -250,9 +279,9 @@
       const R = Math.hypot(Math.max(o.x, innerWidth - o.x), Math.max(o.y, innerHeight - o.y)) + 40;
       gsap.timeline()
         .to(icon, { rotation: 180, scale: 1.15, duration: 0.6, ease: "back.out(2.5)" }, 0)
-        .to(lines[0], { y: 7.5, rotation: 45, duration: 0.4, ease: "back.out(2)" }, 0.05)
+        .to(lines[0], { y: 6, rotation: 45, duration: 0.4, ease: "back.out(2)" }, 0.05)
         .to(lines[1], { scaleX: 0, autoAlpha: 0, duration: 0.25 }, 0)
-        .to(lines[2], { y: -7.5, rotation: -45, duration: 0.4, ease: "back.out(2)" }, 0.05)
+        .to(lines[2], { y: -6, rotation: -45, duration: 0.4, ease: "back.out(2)" }, 0.05)
         .fromTo(label, { yPercent: 100, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 0.4 }, 0.15);
       tl = gsap.timeline({ onComplete: () => links[0].focus({ preventScroll: true }) })
         .fromTo(portal, { clipPath: `circle(0px at ${o.x}px ${o.y}px)` }, { clipPath: `circle(${R}px at ${o.x}px ${o.y}px)`, duration: 1.05, ease: "expo.inOut" }, 0)
