@@ -1,0 +1,7 @@
+# Working files: superseded builds, unused assets and the QA harness
+Guide & References/
+.DS_Store
+
+# Local working notes (kept out of the public repo)
+CLAUDE.md
+BACKLOG.md

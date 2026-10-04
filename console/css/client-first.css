@@ -1,0 +1,168 @@
+/* ==========================================================================
+   One-Off Portfolio: variables, base and Client-First utilities.
+   Theme: console dashboard. Deep night grounds, glass surfaces, one blue
+   accent, white focus. Mirrors the Webflow Variables panel, tag styles and
+   utility classes. Desktop first; Webflow breakpoints 991 / 767 / 479.
+   ========================================================================== */
+
+:root {
+  /* Primitives: neutral */
+  --base-color-neutral--abyss: #04060d;
+  --base-color-neutral--night: #0a1022;
+  --base-color-neutral--slate: #151d33;
+  --base-color-neutral--steel: #2a3550;
+  --base-color-neutral--white: #ffffff;
+
+  /* Primitives: brand */
+  --base-color-brand--blue: #2f7bff;
+  --base-color-brand--blue-light: #6ea2ff;
+  --base-color-brand--blue-deep: #0d2f7a;
+  --base-color-brand--violet: #4b2fb8;
+  --base-color-brand--teal: #0f6f7a;
+  --base-color-brand--ember: #b2462a;
+
+  /* Primitives: trophy grades */
+  --base-color-trophy--bronze: #cd8b55;
+  --base-color-trophy--silver: #c9d1dd;
+  --base-color-trophy--gold: #e9c25c;
+  --base-color-trophy--platinum: #a9c8ff;
+
+  /* Semantic */
+  --background-color--background-primary: var(--base-color-neutral--abyss);
+  --background-color--background-glass: rgba(255, 255, 255, 0.07);
+  --background-color--background-glass-strong: rgba(255, 255, 255, 0.13);
+  --background-color--background-panel: rgba(10, 16, 34, 0.86);
+  --text-color--text-primary: var(--base-color-neutral--white);
+  --text-color--text-secondary: rgba(255, 255, 255, 0.74);
+  --text-color--text-tertiary: rgba(255, 255, 255, 0.56);
+  --text-color--text-on-light: var(--base-color-neutral--abyss);
+  --border-color--border-glass: rgba(255, 255, 255, 0.16);
+  --border-color--border-focus: var(--base-color-neutral--white);
+  --accent: var(--base-color-brand--blue);
+
+  /* Typography */
+  --font--primary: "Figtree", "Helvetica Neue", Arial, sans-serif;
+
+  /* Radius */
+  --radius--small: 0.5rem;
+  --radius--medium: 0.875rem;
+  --radius--large: 1.25rem;
+  --radius--round: 999px;
+
+  /* Shadows */
+  --shadow--focus: 0 0 0 3px var(--base-color-neutral--white), 0 0 1.5rem rgba(110, 162, 255, 0.55);
+  --shadow--panel: 0 1.5rem 3rem -1rem rgba(0, 0, 0, 0.7);
+
+  /* Motion */
+  --ease--console: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration--fast: 0.18s;
+  --duration--standard: 0.32s;
+  --duration--slow: 0.7s;
+
+  color-scheme: dark;
+}
+
+/* ---------- Base (Webflow tag styles) ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background-color: var(--background-color--background-primary);
+  color: var(--text-color--text-primary);
+  font-family: var(--font--primary);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+h1, h2, h3, h4 { margin: 0; font-weight: 600; line-height: 1.1; letter-spacing: -0.01em; text-wrap: balance; }
+h1 { font-size: 3.5rem; font-weight: 400; letter-spacing: -0.02em; }
+h2 { font-size: 2.5rem; font-weight: 400; letter-spacing: -0.015em; }
+h3 { font-size: 1.375rem; }
+h4 { font-size: 1.125rem; }
+p { margin: 0; text-wrap: pretty; }
+a { color: var(--base-color-brand--blue-light); text-underline-offset: 3px; }
+ul { margin: 0; padding: 0; }
+button { font: inherit; color: inherit; }
+::selection { background-color: var(--base-color-brand--blue); color: var(--base-color-neutral--white); }
+:focus-visible { outline: none; box-shadow: var(--shadow--focus); }
+
+/* ---------- Structure utilities ---------- */
+.page-wrapper { position: relative; overflow: clip; }
+.main-wrapper { position: relative; }
+.padding-global { padding-left: 4rem; padding-right: 4rem; }
+.container-large { width: 100%; max-width: 80rem; margin-left: auto; margin-right: auto; }
+.container-medium { width: 100%; max-width: 60rem; margin-left: auto; margin-right: auto; }
+.padding-section-medium { padding-top: 4rem; padding-bottom: 4rem; }
+.padding-section-small { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+
+/* ---------- Typography utilities ---------- */
+.heading-style-h1 { font-size: 3.5rem; font-weight: 400; line-height: 1.05; letter-spacing: -0.02em; }
+.heading-style-h2 { font-size: 2.5rem; font-weight: 400; line-height: 1.1; }
+.heading-style-h3 { font-size: 1.375rem; font-weight: 600; line-height: 1.2; }
+.heading-style-h4 { font-size: 1.125rem; font-weight: 600; line-height: 1.3; }
+.text-size-large { font-size: 1.25rem; line-height: 1.55; }
+.text-size-medium { font-size: 1.125rem; }
+.text-size-regular { font-size: 1.0625rem; }
+.text-size-small { font-size: 0.9375rem; line-height: 1.5; }
+.text-size-tiny { font-size: 0.8125rem; line-height: 1.4; }
+.text-weight-light { font-weight: 300; }
+.text-weight-medium { font-weight: 500; }
+.text-weight-semibold { font-weight: 600; }
+.text-color-secondary { color: var(--text-color--text-secondary); }
+.text-color-tertiary { color: var(--text-color--text-tertiary); }
+.text-align-center { text-align: center; }
+
+/* ---------- Spacing utilities (8px grid, 4px half step) ---------- */
+.margin-bottom { margin-top: 0; margin-left: 0; margin-right: 0; }
+.margin-bottom.margin-tiny { margin-bottom: 0.25rem; }
+.margin-bottom.margin-xxsmall { margin-bottom: 0.5rem; }
+.margin-bottom.margin-xsmall { margin-bottom: 1rem; }
+.margin-bottom.margin-small { margin-bottom: 1.5rem; }
+.margin-bottom.margin-medium { margin-bottom: 2rem; }
+.margin-bottom.margin-large { margin-bottom: 3rem; }
+.max-width-large { width: 100%; max-width: 48rem; }
+.max-width-medium { width: 100%; max-width: 36rem; }
+.max-width-small { width: 100%; max-width: 28rem; }
+
+/* ---------- Visibility ---------- */
+.hide { display: none !important; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+/* ---------- Buttons (button + is-* variants) ---------- */
+.button-group { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+.button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.625rem;
+  min-height: 3.25rem; min-width: 10rem; padding: 0 1.75rem;
+  border: 0; border-radius: var(--radius--round);
+  background-color: var(--base-color-neutral--white); color: var(--text-color--text-on-light);
+  font-size: 1.0625rem; font-weight: 600; text-decoration: none; cursor: pointer;
+  transition: transform var(--duration--fast) var(--ease--console), box-shadow var(--duration--fast) ease-out, background-color var(--duration--fast);
+}
+.button:hover { transform: scale(1.04); box-shadow: 0 0 1.5rem rgba(255, 255, 255, 0.35); }
+.button:active { transform: scale(0.97); }
+.button.is-secondary { background-color: var(--background-color--background-glass-strong); color: var(--text-color--text-primary); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.button.is-secondary:hover { background-color: rgba(255, 255, 255, 0.22); }
+.button.is-icon { min-width: 0; width: 3.25rem; padding: 0; }
+.button.is-small { min-height: 2.75rem; min-width: 0; padding: 0 1.25rem; font-size: 0.9375rem; }
+.button-icon { width: 1.25rem; height: 1.25rem; flex: none; }
+
+/* ---------- Breakpoints ---------- */
+@media screen and (max-width: 991px) {
+  .padding-global { padding-left: 2.5rem; padding-right: 2.5rem; }
+  h1, .heading-style-h1 { font-size: 2.75rem; }
+  h2, .heading-style-h2 { font-size: 2.125rem; }
+}
+@media screen and (max-width: 767px) {
+  .padding-global { padding-left: 1.25rem; padding-right: 1.25rem; }
+  h1, .heading-style-h1 { font-size: 2.25rem; }
+  h2, .heading-style-h2 { font-size: 1.875rem; }
+  .text-size-large { font-size: 1.125rem; }
+  .padding-section-medium { padding-top: 3rem; padding-bottom: 3rem; }
+}
+@media screen and (max-width: 479px) {
+  .padding-global { padding-left: 1rem; padding-right: 1rem; }
+  h1, .heading-style-h1 { font-size: 2rem; }
+  .button { min-width: 0; padding: 0 1.375rem; }
+}

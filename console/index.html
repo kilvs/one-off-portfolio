@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Eugene Quilban | Webflow developer</title>
+  <meta name="description" content="I turn Figma files and client feedback into clean, fast Webflow sites on Finsweet Client-First. Your words stay your words, every change is written down, and nothing goes live until you say so.">
+  <meta name="theme-color" content="#04060d">
+  <meta property="og:title" content="Eugene Quilban | Webflow developer">
+  <meta property="og:description" content="I build it properly, then I check it in the real browser.">
+  <meta property="og:type" content="website">
+  <!-- [PLACEHOLDER: og:image needs an absolute URL once the site has a domain] -->
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+  <script>document.documentElement.className += " w-mod-js";</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@14.2.0/swiper-bundle.min.css">
+  <link rel="stylesheet" href="css/client-first.css?v=514f7317">
+  <link rel="stylesheet" href="css/console.css?v=4c039753">
+</head>
+<body>
+  <a class="skip-link" href="#console">Skip to content</a>
+
+  <div class="page-wrapper">
+
+    <!-- Component: Start screen -->
+    <div class="start_component" data-start>
+      <div class="start_backdrop" aria-hidden="true"></div>
+      <div class="start_content">
+        <div class="start_avatar-wrapper">
+          <img src="../images/photos/eugene-portrait-blue-900.webp" width="900" height="507" alt="" class="start_avatar">
+        </div>
+        <p class="start_name">Eugene Quilban</p>
+        <p class="start_tagline">Webflow developer. Philippines based. Working with Australia and the US.</p>
+        <button type="button" class="button start_button" data-start-button>
+          <span class="glyph is-cross" aria-hidden="true"></span>Start
+        </button>
+        <p class="start_hint text-size-tiny">Enter, click, or a controller button</p>
+      </div>
+    </div>
+
+    <!-- Component: Top bar -->
+    <header class="topbar_component">
+      <div class="padding-global">
+        <div class="topbar_container">
+          <nav class="topbar_tabs" role="tablist" aria-label="Library">
+            <button type="button" class="topbar_tab is-active" role="tab" aria-selected="true" aria-controls="shelf-portfolio" id="tab-portfolio" data-tab="portfolio">Portfolio</button>
+            <button type="button" class="topbar_tab" role="tab" aria-selected="false" aria-controls="shelf-media" id="tab-media" data-tab="media" tabindex="-1">Media</button>
+          </nav>
+          <div class="topbar_actions">
+            <button type="button" class="topbar_icon-button" data-sound-toggle aria-pressed="true" aria-label="Sound">
+              <img src="../images/icons/ui/icon-volume-2-white.svg" alt="" width="24" height="24" class="topbar_icon is-sound-on">
+              <img src="../images/icons/ui/icon-volume-x-white.svg" alt="" width="24" height="24" class="topbar_icon is-sound-off">
+            </button>
+            <button type="button" class="topbar_icon-button is-trophies" data-trophies-open aria-label="Trophies">
+              <img src="../images/icons/ui/icon-trophy-white.svg" alt="" width="24" height="24" class="topbar_icon">
+              <span class="topbar_trophy-count" data-trophy-count>0</span>
+            </button>
+            <button type="button" class="topbar_avatar-button" data-open-hub="profile" aria-label="Open profile">
+              <img src="../images/photos/eugene-portrait-street-640.webp" width="640" height="800" alt="" class="topbar_avatar">
+            </button>
+            <p class="topbar_clock" title="Time in Balanga, Bataan"><span class="sr-only">Time in Balanga: </span><span data-clock>--:--</span></p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="console" class="main-wrapper">
+      <section class="section-home_console" aria-label="Portfolio dashboard">
+
+        <!-- Key art: one layer per tile, crossfaded by the script -->
+        <div class="console_backdrop-list" aria-hidden="true">
+          <div class="console_backdrop is-profile is-active" data-backdrop="profile"><img src="../images/photos/eugene-portrait-blue-1672.webp" width="1672" height="941" alt="" class="console_backdrop-image is-right" fetchpriority="high"></div>
+          <div class="console_backdrop is-services" data-backdrop="services"><img src="../images/icons/ui/icon-layers-white.svg" alt="" width="24" height="24" class="console_backdrop-icon"></div>
+          <div class="console_backdrop is-gsh" data-backdrop="gsh">
+            <div class="console_backdrop-art"><div class="art_gauges">
+              <div class="art_gauge"><div class="art_ring is-mobile"><div class="art_ring-inner"><span class="art_ring-value">91 to 96</span></div></div><span class="art_gauge-label">Mobile</span></div>
+              <div class="art_gauge"><div class="art_ring is-desktop"><div class="art_ring-inner"><span class="art_ring-value">99 to 100</span></div></div><span class="art_gauge-label">Desktop</span></div>
+            </div></div>
+          </div>
+          <div class="console_backdrop is-omble" data-backdrop="omble">
+            <div class="console_backdrop-art"><div class="art_flow">
+              <div class="art_panel"><span class="art_panel-label">Vercel preview</span><span class="art_bar is-tall"></span><span class="art_bar"></span><span class="art_bar is-short"></span></div>
+              <img src="../images/icons/ui/icon-chevron-right-white.svg" alt="" width="24" height="24" class="art_arrow">
+              <div class="art_panel is-webflow"><span class="art_panel-label">Webflow</span><span class="art_bar is-tall"></span><span class="art_bar"></span><span class="art_bar is-short"></span></div>
+            </div></div>
+          </div>
+          <div class="console_backdrop is-btc" data-backdrop="btc">
+            <div class="console_backdrop-art"><div class="art_cms">
+              <div class="art_filters"><span class="art_filter is-active">All</span><span class="art_filter"><span class="art_dot is-ember"></span></span><span class="art_filter"><span class="art_dot is-teal"></span></span><span class="art_filter"><span class="art_dot is-violet"></span></span></div>
+              <div class="art_cms-grid"><span class="art_cms-card is-ember"></span><span class="art_cms-card is-teal"></span><span class="art_cms-card is-violet"></span></div>
+            </div></div>
+          </div>
+          <div class="console_backdrop is-ember" data-backdrop="ember">
+            <div class="console_backdrop-art"><div class="art_bars">
+              <div class="art_bar-row"><span class="art_bar-label">Before</span><span class="art_bar-track"><span class="art_bar-fill is-before"></span></span><span class="art_bar-value">56</span></div>
+              <div class="art_bar-row"><span class="art_bar-label">After</span><span class="art_bar-track"><span class="art_bar-fill is-after"></span></span><span class="art_bar-value">21</span></div>
+              <p class="art_bars-caption">Published listings</p>
+            </div></div>
+          </div>
+          <div class="console_backdrop is-dain" data-backdrop="dain">
+            <div class="console_backdrop-art"><div class="art_url">
+              <div class="art_address"><span class="art_dot is-teal"></span>rivyl.com<span class="art_slug">/dain-book</span></div>
+              <div class="art_layer"><img src="../images/icons/tech/icon-astro-white.svg" alt="" width="24" height="24" class="art_layer-icon">Astro</div>
+              <div class="art_layer"><img src="../images/icons/tech/icon-webflow-white.svg" alt="" width="24" height="24" class="art_layer-icon">Webflow Cloud</div>
+            </div></div>
+          </div>
+          <div class="console_backdrop is-more" data-backdrop="more"><img src="../images/icons/ui/icon-briefcase-white.svg" alt="" width="24" height="24" class="console_backdrop-icon"></div>
+          <div class="console_backdrop is-how" data-backdrop="how"><img src="../images/icons/ui/icon-list-checks-white.svg" alt="" width="24" height="24" class="console_backdrop-icon"></div>
+          <div class="console_backdrop is-toolkit" data-backdrop="toolkit">
+            <div class="console_backdrop-art"><div class="art_logo-grid">
+              <img src="../images/icons/tech/icon-webflow-white.svg" alt="" width="24" height="24"><img src="../images/icons/tech/icon-figma-white.svg" alt="" width="24" height="24"><img src="../images/icons/tech/icon-gsap-white.svg" alt="" width="24" height="24"><img src="../images/icons/tech/icon-javascript-white.svg" alt="" width="24" height="24">
+              <img src="../images/icons/tech/icon-swiper-white.svg" alt="" width="24" height="24"><img src="../images/icons/tech/icon-wordpress-white.svg" alt="" width="24" height="24"><img src="../images/icons/tech/icon-astro-white.svg" alt="" width="24" height="24"><img src="../images/icons/tech/icon-godotengine-white.svg" alt="" width="24" height="24">
+            </div></div>
+          </div>
+          <div class="console_backdrop is-system" data-backdrop="system"><img src="../images/icons/tech/icon-claude-white.svg" alt="" width="24" height="24" class="console_backdrop-icon"></div>
+          <div class="console_backdrop is-off" data-backdrop="off"><img data-src="../images/photos/mount-samat-sunset-2400.webp" width="2400" height="1598" alt="" class="console_backdrop-image"></div>
+          <div class="console_backdrop is-faq" data-backdrop="faq"><img src="../images/icons/ui/icon-circle-help-white.svg" alt="" width="24" height="24" class="console_backdrop-icon"></div>
+          <div class="console_backdrop is-contact" data-backdrop="contact"><img data-src="../images/photos/eugene-portrait-street-1122.webp" width="1122" height="1402" alt="" class="console_backdrop-image is-portrait"></div>
+          <div class="console_backdrop is-album-bataan" data-backdrop="album-bataan"><img data-src="../images/photos/balanga-cathedral-2400.webp" width="2400" height="1807" alt="" class="console_backdrop-image"></div>
+          <div class="console_backdrop is-album-garage" data-backdrop="album-garage"><img data-src="../images/photos/corolla-gli-white-1993-2400.webp" width="2400" height="1801" alt="" class="console_backdrop-image"></div>
+          <div class="console_backdrop is-album-eugene" data-backdrop="album-eugene"><img data-src="../images/photos/eugene-portrait-blue-1672.webp" width="1672" height="941" alt="" class="console_backdrop-image is-right"></div>
+          <div class="console_backdrop-shade"></div>
+        </div>
+
+        <div class="console_body padding-global">
+
+          <!-- Shelf: Portfolio -->
+          <div class="console_shelf" id="shelf-portfolio" role="tabpanel" aria-labelledby="tab-portfolio" data-shelf="portfolio">
+            <div class="swiper console_shelf-slider" data-swiper="shelf-portfolio">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide console_shelf-slide"><button type="button" class="component_tile is-profile" data-tile="profile" data-title="I build it properly, then I check it in the real browser." data-meta="Eugene Quilban" data-description="I turn Figma files and client feedback into clean, fast Webflow sites on Finsweet Client-First. Your words stay your words, every change is written down, and nothing goes live until you say so." aria-label="Profile"><img src="../images/photos/eugene-portrait-street-640.webp" width="640" height="800" alt="" class="tile_image"></button></div>
+                <div class="swiper-slide console_shelf-slide"><button type="button" class="component_tile is-services" data-tile="services" data-title="What I can take off your plate." data-meta="Services" data-description="Hi-fi designs converted 1:1 on Client-First: variables, utility classes, components with props and variants, CMS collections and templates." aria-label="What I do"><img src="../images/icons/ui/icon-layers-white.svg" alt="" width="24" height="24" class="tile_icon"></button></div>
+                <div class="swiper-slide console_shelf-slide"><button type="button" class="component_tile is-gsh" data-tile="gsh" data-case data-title="Great Southern Homes" data-meta="Builder website, Australia. With Atelic Digital." data-description="A Webflow build worked mostly from screenshots, since the Figma was scarce. I tuned it until PageSpeed read 91 to 96 on mobile and 99 to 100 on desktop." aria-label="Great Southern Homes"><span class="tile_monogram">GSH</span></button></div>
+                <div class="swiper-slide console_shelf-slide"><button type="button" class="component_tile is-omble" data-tile="omble" data-case data-title="Omble and ATOmate" data-meta="Two product sites for one Australian client. With Double Shot Growth." data-description="Each page started as a static preview on Vercel so the client could review real code, then moved into Webflow on Client-First." aria-label="Omble and ATOmate"><span class="tile_monogram">O+A</span></button></div>
+                <div class="swiper-slide console_shelf-slide"><button type="button" class="component_tile is-btc" data-tile="btc" data-case data-title="Beyond the Classroom" data-meta="Education collective. With Rivyl." data-description="A hi-fi Figma converted to Webflow: a hero with layered parallax, location tabs, an Insights page with Finsweet filters, and brand colours driven by CMS categories." aria-label="Beyond the Classroom"><span class="tile_monogram">BTC</span></button></div>
+                <div class="swiper-slide console_shelf-slide"><button type="button" class="component_tile is-ember" data-tile="ember" data-case data-title="Ember Property" data-meta="Real estate website, WordPress. With Atelic Digital." data-description="Sold listings never left the site. After a backup, I fixed it on the live site: the published listings dropped from 56 to the correct 21." aria-label="Ember Property"><span class="tile_monogram">EP</span></button></div>
+                <div class="swiper-slide console_shelf-slide"><button type="button" class="component_tile is-dain" data-tile="dain" data-case data-title="Dain Book" data-meta="Campaign landing page. With Rivyl." data-description="An Astro app on Webflow Cloud, mounted under the agency's own domain, built from a Figma frame." aria-label="Dain Book"><span class="tile_monogram">DB</span></button></div>
+                <div class="swiper-slide console_shelf-slide"><button type="button" class="component_tile is-more" data-tile="more" data-title="Also" data-meta="Selected work" data-description="Calltek, Rob Kropp, ATI, a WooCommerce store and Coughlan Homes." aria-label="More work"><img src="../images/icons/ui/icon-briefcase-white.svg" alt="" width="24" height="24" class="tile_icon"></button></div>
+                <div class="swiper-slide console_shelf-slide"><button type="button" class="component_tile is-how" data-tile="how" data-title="How I work." data-meta="Process" data-description="Your words are law. Nothing goes live without your yes. I check the real thing." aria-label="How I work"><img src="../images/icons/ui/icon-list-checks-white.svg" alt="" width="24" height="24" class="tile_icon"></button></div>
+                <div class="swiper-slide console_shelf-slide"><button type="button" class="component_tile is-toolkit" data-tile="toolkit" data-title="What I build with." data-meta="Toolkit" data-description="Webflow, Finsweet Client-First, Webflow Interactions (IX3), Figma, HTML, CSS, JavaScript." aria-label="Toolkit"><img src="../images/icons/tech/icon-webflow-white.svg" alt="" width="24" height="24" class="tile_icon"></button></div>
+                <div class="swiper-slide console_shelf-slide"><button type="button" class="component_tile is-system" data-tile="system" data-title="I use AI the boring, careful way." data-meta="The system behind it" data-description="I work with Claude Code as a second pair of hands. It doesn't decide anything." aria-label="The system behind it"><img src="../images/icons/tech/icon-claude-white.svg" alt="" width="24" height="24" class="tile_icon"></button></div>
+                <div class="swiper-slide console_shelf-slide"><button type="button" class="component_tile is-off" data-tile="off" data-title="Off the clock." data-meta="Malaki Ethics Co and games" data-description="A three-person Webflow and Shopify studio I run with Pat and Paul. Straight numbers, honest timelines, no dark patterns." aria-label="Off the clock"><img src="../images/photos/mount-samat-sunset-1200.webp" width="1200" height="799" alt="" class="tile_image" loading="lazy"></button></div>
+                <div class="swiper-slide console_shelf-slide"><button type="button" class="component_tile is-faq" data-tile="faq" data-title="Good to know." data-meta="FAQ" data-description="Where I am, how I work with agencies, what I need to start, and working from screenshots." aria-label="Good to know"><img src="../images/icons/ui/icon-circle-help-white.svg" alt="" width="24" height="24" class="tile_icon"></button></div>
+                <div class="swiper-slide console_shelf-slide"><button type="button" class="component_tile is-contact" data-tile="contact" data-title="Got a build that needs doing properly?" data-meta="Contact" data-description="Send me the brief, the Figma link or just a few screenshots. I'll tell you what it needs, what it doesn't, and what it'll take, in writing." aria-label="Contact"><img src="../images/icons/ui/icon-mail-white.svg" alt="" width="24" height="24" class="tile_icon"></button></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Shelf: Media -->
+          <div class="console_shelf" id="shelf-media" role="tabpanel" aria-labelledby="tab-media" data-shelf="media" hidden>
+            <div class="swiper console_shelf-slider" data-swiper="shelf-media">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide console_shelf-slide"><button type="button" class="component_tile is-album" data-tile="album-bataan" data-album="bataan" data-title="Balanga, Bataan" data-meta="Album, 6 photos" data-description="Balanga Cathedral, the Plaza Mayor, Mount Samat, Galleria Victoria and City Hall." aria-label="Balanga, Bataan album"><img src="../images/photos/balanga-cathedral-1200.webp" width="1200" height="904" alt="" class="tile_image" loading="lazy"></button></div>
+                <div class="swiper-slide console_shelf-slide"><button type="button" class="component_tile is-album" data-tile="album-garage" data-album="garage" data-title="Corolla Big Body" data-meta="Album, 5 photos" data-description="The Toyota Corolla E100 generation, in white. GLi, XLE and the AE101." aria-label="Corolla Big Body album"><img src="../images/photos/corolla-gli-white-1993-1200.webp" width="1200" height="901" alt="" class="tile_image" loading="lazy"></button></div>
+                <div class="swiper-slide console_shelf-slide"><button type="button" class="component_tile is-album" data-tile="album-eugene" data-album="eugene" data-title="Eugene" data-meta="Album, 2 photos" data-description="Portraits." aria-label="Eugene album"><img src="../images/photos/eugene-portrait-blue-900.webp" width="900" height="507" alt="" class="tile_image is-right" loading="lazy"></button></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Selected tile details -->
+          <div class="console_info" data-info>
+            <p class="console_info-meta" data-info-meta>Eugene Quilban</p>
+            <h1 class="console_info-title" data-info-title>I build it properly, then I check it in the real browser.</h1>
+            <p class="console_info-description" data-info-description>I turn Figma files and client feedback into clean, fast Webflow sites on Finsweet Client-First. Your words stay your words, every change is written down, and nothing goes live until you say so.</p>
+            <div class="button-group console_info-buttons">
+              <button type="button" class="button" data-open><span class="glyph is-cross is-dark" aria-hidden="true"></span><span data-open-label>Open</span></button>
+              <button type="button" class="button is-secondary is-icon" data-trophies-open aria-label="Trophies"><img src="../images/icons/ui/icon-trophy-white.svg" alt="" width="24" height="24" class="button-icon"></button>
+            </div>
+            <div class="console_activities" data-activities aria-label="Highlights"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Component: Hub (full content for each tile) -->
+    <div class="component_hub" data-hub role="dialog" aria-modal="true" aria-labelledby="hub-title" aria-hidden="true">
+      <div class="hub_backdrop" data-hub-close aria-hidden="true"></div>
+      <div class="hub_window">
+        <div class="hub_bar">
+          <button type="button" class="button is-secondary is-small hub_back" data-hub-close><span class="glyph is-circle" aria-hidden="true"></span>Back</button>
+          <p class="hub_bar-title" id="hub-title" data-hub-title>Profile</p>
+        </div>
+        <div class="hub_scroll" data-hub-scroll>
+
+          <article class="hub_panel" data-hub-panel="profile" aria-labelledby="hub-profile-heading">
+            <div class="hub_split">
+              <div class="hub_split-media"><img src="../images/photos/eugene-portrait-street-1122.webp" srcset="../images/photos/eugene-portrait-street-640.webp 640w, ../images/photos/eugene-portrait-street-1122.webp 1122w" sizes="(max-width: 767px) 90vw, 24rem" width="1122" height="1402" alt="Eugene in a black hoodie outside a cafe at golden hour" loading="lazy" class="hub_portrait"></div>
+              <div class="hub_split-content">
+                <h2 id="hub-profile-heading" class="heading-style-h2 margin-bottom margin-small">Hi, I'm Eugene.</h2>
+                <div class="hub_text">
+                  <p class="text-size-large" data-activity="Who I am">I'm a web developer from the Philippines. Most days I'm inside Webflow, building sites for agencies and their clients in Australia and the US. I work through Double Shot Growth, Rivyl and Atelic Digital, and I co-run a small studio of my own, Malaki Ethics Co.</p>
+                  <p class="text-color-secondary" data-activity="What I care about">I came to development through design and front-end, and I still care most about the parts a client can see: type that never leaves an orphan, motion that stays calm, cards that feel designed instead of flat. The engineering is there to protect that. Tokens, components and a written log of every decision mean a site still makes sense to the next person who opens it.</p>
+                  <p class="text-color-secondary" data-activity="How I talk">I'm direct. If a request will hurt the site, I'll say so in one line and then build what you asked for. If I'm unsure what you meant, I'll build the literal version and ask the one question that matters.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="hub_panel" data-hub-panel="services" aria-labelledby="hub-services-heading">
+            <h2 id="hub-services-heading" class="heading-style-h2 margin-bottom margin-medium">What I can take off your plate.</h2>
+            <div class="hub_card-grid">
+              <div class="hub_card is-wide" data-activity="Figma to Webflow builds"><img src="../images/icons/ui/icon-layers-white.svg" alt="" width="24" height="24" class="hub_card-icon"><h3 class="heading-style-h3 margin-bottom margin-xxsmall">Figma to Webflow builds</h3><p class="text-color-secondary">Hi-fi designs converted 1:1 on Client-First: variables, utility classes, components with props and variants, CMS collections and templates. Built so the Designer canvas is the source of truth, not a pile of custom code.</p></div>
+              <div class="hub_card" data-activity="Motion and interaction"><img src="../images/icons/ui/icon-sparkles-white.svg" alt="" width="24" height="24" class="hub_card-icon"><h3 class="heading-style-h3 margin-bottom margin-xxsmall">Motion and interaction</h3><p class="text-color-secondary">Scroll reveals, parallax, sliders, tabs, accordions and nav states in Webflow Interactions (IX3, GSAP under the hood). Subtle by default, off for people who ask for reduced motion, and never in the way of the page loading.</p></div>
+              <div class="hub_card" data-activity="Design that doesn't look AI-made"><img src="../images/icons/ui/icon-palette-white.svg" alt="" width="24" height="24" class="hub_card-icon"><h3 class="heading-style-h3 margin-bottom margin-xxsmall">Design that doesn't look AI-made</h3><p class="text-color-secondary">When there is no reference, I design with the client's brand guide: contrasting section grounds, soft gradients, real shadows, mock UI built in HTML and CSS instead of stock screenshots.</p></div>
+              <div class="hub_card" data-activity="Fixes on live sites"><img src="../images/icons/ui/icon-wrench-white.svg" alt="" width="24" height="24" class="hub_card-icon"><h3 class="heading-style-h3 margin-bottom margin-xxsmall">Fixes on live sites</h3><p class="text-color-secondary">WordPress, Elementor and Maropost sites that misbehave. I read the code first, take a backup, change as little as possible and leave revert steps behind.</p></div>
+              <div class="hub_card" data-activity="Speed, accessibility and launch checks"><img src="../images/icons/ui/icon-gauge-white.svg" alt="" width="24" height="24" class="hub_card-icon"><h3 class="heading-style-h3 margin-bottom margin-xxsmall">Speed, accessibility and launch checks</h3><p class="text-color-secondary">PageSpeed work, skip links, focus states, contrast ratios, schema, meta and a pre-launch sweep across every width from 390 to ultrawide.</p></div>
+            </div>
+          </article>
+
+          <article class="hub_panel" data-hub-panel="gsh" aria-labelledby="hub-gsh-heading">
+            <p class="hub_meta">Builder website, Australia. With Atelic Digital.</p>
+            <h2 id="hub-gsh-heading" class="heading-style-h2 margin-bottom margin-small">Great Southern Homes</h2>
+            <p class="text-size-large max-width-large margin-bottom margin-medium" data-activity="The build">A Webflow build worked mostly from screenshots, since the Figma was scarce. Card-stack sliders with a custom scrollbar, a scroll-scrubbed hero, a component navbar with animated dropdowns, service pages and case study templates. I tuned it until PageSpeed read 91 to 96 on mobile and 99 to 100 on desktop.</p>
+            <ul class="hub_tags" aria-label="Tags" data-activity="Tags"><li>Webflow</li><li>IX3</li><li>Swiper</li><li>Performance</li></ul>
+            <p class="hub_credit">Built by Eugene with Atelic Digital. Client and design ownership stay with them. Shown with thanks.</p>
+          </article>
+
+          <article class="hub_panel" data-hub-panel="omble" aria-labelledby="hub-omble-heading">
+            <p class="hub_meta">Two product sites for one Australian client. With Double Shot Growth.</p>
+            <h2 id="hub-omble-heading" class="heading-style-h2 margin-bottom margin-small">Omble and ATOmate</h2>
+            <p class="text-size-large max-width-large margin-bottom margin-medium" data-activity="The build">Each page started as a static preview on Vercel so the client could review real code, then moved into Webflow on Client-First. Feedback came in rounds of PDFs and screenshots; every item was checked against the live page and logged. Interface graphics are built in HTML and CSS, so they animate and stay sharp. Omble also got an Insights blog on the CMS with case study linking.</p>
+            <ul class="hub_tags" aria-label="Tags" data-activity="Tags"><li>Webflow</li><li>Vercel previews</li><li>CMS</li><li>Components</li></ul>
+            <p class="hub_credit">Built by Eugene with Double Shot Growth. Client and design ownership stay with them. Shown with thanks.</p>
+          </article>
+
+          <article class="hub_panel" data-hub-panel="btc" aria-labelledby="hub-btc-heading">
+            <p class="hub_meta">Education collective. With Rivyl.</p>
+            <h2 id="hub-btc-heading" class="heading-style-h2 margin-bottom margin-small">Beyond the Classroom</h2>
+            <p class="text-size-large max-width-large margin-bottom margin-medium" data-activity="The build">A hi-fi Figma converted to Webflow: a hero with layered parallax, location tabs, testimonials and FAQ components that switch between static and CMS content, an Insights page with Finsweet filters, and brand colours driven by CMS categories.</p>
+            <ul class="hub_tags" aria-label="Tags" data-activity="Tags"><li>Webflow</li><li>CMS</li><li>Finsweet</li><li>IX3</li></ul>
+            <p class="hub_credit">Built by Eugene with Rivyl. Client and design ownership stay with them. Shown with thanks.</p>
+          </article>
+
+          <article class="hub_panel" data-hub-panel="ember" aria-labelledby="hub-ember-heading">
+            <p class="hub_meta">Real estate website, WordPress. With Atelic Digital.</p>
+            <h2 id="hub-ember-heading" class="heading-style-h2 margin-bottom margin-small">Ember Property</h2>
+            <p class="text-size-large max-width-large margin-bottom margin-medium" data-activity="The fix">Sold listings never left the site. I traced it to the property sync plugin replaying every XML feed each hour and overwriting the sold date. After a backup, I fixed it on the live site: the published listings dropped from 56 to the correct 21, and they stayed correct after the next sync.</p>
+            <ul class="hub_tags" aria-label="Tags" data-activity="Tags"><li>WordPress</li><li>PHP</li><li>Debugging</li></ul>
+            <p class="hub_credit">Built by Eugene with Atelic Digital. Client and design ownership stay with them. Shown with thanks.</p>
+          </article>
+
+          <article class="hub_panel" data-hub-panel="dain" aria-labelledby="hub-dain-heading">
+            <p class="hub_meta">Campaign landing page. With Rivyl.</p>
+            <h2 id="hub-dain-heading" class="heading-style-h2 margin-bottom margin-small">Dain Book</h2>
+            <p class="text-size-large max-width-large margin-bottom margin-medium" data-activity="The build">An Astro app on Webflow Cloud, mounted under the agency's own domain, built from a Figma frame.</p>
+            <ul class="hub_tags" aria-label="Tags" data-activity="Tags"><li>Astro</li><li>Webflow Cloud</li></ul>
+            <p class="hub_credit">Built by Eugene with Rivyl. Client and design ownership stay with them. Shown with thanks.</p>
+          </article>
+
+          <article class="hub_panel" data-hub-panel="more" aria-labelledby="hub-more-heading">
+            <h2 id="hub-more-heading" class="heading-style-h2 margin-bottom margin-medium">Also</h2>
+            <ul class="hub_list">
+              <li class="hub_list-item" data-activity="Calltek"><p class="heading-style-h4">Calltek <span class="hub_list-org">Double Shot Growth</span></p><p class="text-color-secondary">Webflow build for a US client, worked directly in the Designer.</p></li>
+              <li class="hub_list-item" data-activity="Rob Kropp"><p class="heading-style-h4">Rob Kropp <span class="hub_list-org">Rivyl</span></p><p class="text-color-secondary">A trades coach's site, rebuilt 1:1 from Figma on a fresh token system.</p></li>
+              <li class="hub_list-item" data-activity="ATI"><p class="heading-style-h4">ATI <span class="hub_list-org">Rivyl</span></p><p class="text-color-secondary">Ongoing work on a Maropost Commerce Cloud store, staging first, every change committed.</p></li>
+              <li class="hub_list-item"><p class="heading-style-h4">A WooCommerce store <span class="hub_list-org">Atelic Digital</span></p><p class="text-color-secondary">Clean-up and security review after a hack left 19,278 spam posts behind.</p></li>
+              <li class="hub_list-item"><p class="heading-style-h4">Coughlan Homes <span class="hub_list-org">Atelic Digital</span></p><p class="text-color-secondary">Spam protection on the contact form and a sideways-scroll fix on a live Elementor site.</p></li>
+            </ul>
+          </article>
+
+          <article class="hub_panel" data-hub-panel="how" aria-labelledby="hub-how-heading">
+            <h2 id="hub-how-heading" class="heading-style-h2 margin-bottom margin-medium">How I work.</h2>
+            <div class="hub_card-grid is-three">
+              <div class="hub_card" data-activity="Your words are law."><h3 class="heading-style-h3 margin-bottom margin-xxsmall">Your words are law.</h3><p class="text-color-secondary">I build copy exactly as you send it, typos included. I flag them; I don't fix them. If content is missing you'll see a labelled placeholder, never a sentence I made up.</p></div>
+              <div class="hub_card" data-activity="Nothing goes live without your yes."><h3 class="heading-style-h3 margin-bottom margin-xxsmall">Nothing goes live without your yes.</h3><p class="text-color-secondary">I check on localhost or staging first. Publishing happens on your word, one yes per publish, and afterwards I open the live URL to confirm it's really there.</p></div>
+              <div class="hub_card is-tester" data-activity="I check the real thing.">
+                <h3 class="heading-style-h3 margin-bottom margin-xxsmall">I check the real thing.</h3>
+                <p class="text-color-secondary">Not a search through the code, not my memory of it. I open the rendered page and measure it at 1440, 1100, 992, 768 and 390, plus ultrawide before sign-off.</p>
+                <div class="width-tester_component" data-width-tester>
+                  <div class="width-tester_stage">
+                    <div class="width-tester_browser" data-width-browser role="img" aria-label="A browser window resizing through the widths 1440, 1100, 992, 768 and 390 while its layout reflows">
+                      <div class="width-tester_chrome"><span class="width-tester_dots"><span></span><span></span><span></span></span><span class="width-tester_readout" data-width-readout>1440</span></div>
+                      <div class="width-tester_viewport"><span class="width-tester_hero"></span><div class="width-tester_cards"><span></span><span></span><span></span></div></div>
+                    </div>
+                  </div>
+                  <div class="width-tester_buttons" role="group" aria-label="Preview width">
+                    <button type="button" class="width-tester_button" data-width="1440" aria-pressed="true">1440</button>
+                    <button type="button" class="width-tester_button" data-width="1100" aria-pressed="false">1100</button>
+                    <button type="button" class="width-tester_button" data-width="992" aria-pressed="false">992</button>
+                    <button type="button" class="width-tester_button" data-width="768" aria-pressed="false">768</button>
+                    <button type="button" class="width-tester_button" data-width="390" aria-pressed="false">390</button>
+                  </div>
+                </div>
+              </div>
+              <div class="hub_card" data-activity="Everything is written down."><h3 class="heading-style-h3 margin-bottom margin-xxsmall">Everything is written down.</h3><p class="text-color-secondary">Each change goes into the project log with the date and who asked for it. You can always see why something is the way it is.</p></div>
+              <div class="hub_card"><h3 class="heading-style-h3 margin-bottom margin-xxsmall">Easy to undo.</h3><p class="text-color-secondary">Clients change their minds, and that's fine. I build asks as small overrides that one setting can reverse, and I hide or move things instead of deleting them.</p></div>
+              <div class="hub_card"><h3 class="heading-style-h3 margin-bottom margin-xxsmall">I stay inside the ask.</h3><p class="text-color-secondary">If something next to the task looks wrong, I tell you in one line. I don't quietly redesign it.</p></div>
+            </div>
+          </article>
+
+          <article class="hub_panel" data-hub-panel="toolkit" aria-labelledby="hub-toolkit-heading">
+            <h2 id="hub-toolkit-heading" class="heading-style-h2 margin-bottom margin-medium">What I build with.</h2>
+            <div class="hub_toolkit">
+              <div class="hub_toolkit-group" data-activity="Every day">
+                <h3 class="heading-style-h4 margin-bottom margin-xsmall">Every day</h3>
+                <ul class="hub_chip-list">
+                  <li class="component_chip"><img src="../images/icons/tech/icon-webflow-white.svg" alt="" width="24" height="24" class="chip_icon">Webflow</li>
+                  <li class="component_chip"><img src="../images/icons/ui/icon-layers-white.svg" alt="" width="24" height="24" class="chip_icon">Finsweet Client-First</li>
+                  <li class="component_chip"><img src="../images/icons/ui/icon-sparkles-white.svg" alt="" width="24" height="24" class="chip_icon">Webflow Interactions (IX3)</li>
+                  <li class="component_chip"><img src="../images/icons/tech/icon-figma-white.svg" alt="" width="24" height="24" class="chip_icon">Figma</li>
+                  <li class="component_chip"><img src="../images/icons/tech/icon-html5-white.svg" alt="" width="24" height="24" class="chip_icon">HTML</li>
+                  <li class="component_chip"><img src="../images/icons/tech/icon-css-white.svg" alt="" width="24" height="24" class="chip_icon">CSS</li>
+                  <li class="component_chip"><img src="../images/icons/tech/icon-javascript-white.svg" alt="" width="24" height="24" class="chip_icon">JavaScript</li>
+                </ul>
+              </div>
+              <div class="hub_toolkit-group" data-activity="Often">
+                <h3 class="heading-style-h4 margin-bottom margin-xsmall">Often</h3>
+                <ul class="hub_chip-list">
+                  <li class="component_chip"><img src="../images/icons/tech/icon-gsap-white.svg" alt="" width="24" height="24" class="chip_icon">GSAP</li>
+                  <li class="component_chip"><img src="../images/icons/tech/icon-swiper-white.svg" alt="" width="24" height="24" class="chip_icon">Swiper</li>
+                  <li class="component_chip"><img src="../images/icons/tech/icon-webflow-white.svg" alt="" width="24" height="24" class="chip_icon">Webflow CMS</li>
+                  <li class="component_chip"><img src="../images/icons/ui/icon-zap-white.svg" alt="" width="24" height="24" class="chip_icon">Finsweet Attributes</li>
+                  <li class="component_chip"><img src="../images/icons/tech/icon-github-white.svg" alt="" width="24" height="24" class="chip_icon">GitHub</li>
+                  <li class="component_chip"><img src="../images/icons/tech/icon-vercel-white.svg" alt="" width="24" height="24" class="chip_icon">Vercel</li>
+                </ul>
+              </div>
+              <div class="hub_toolkit-group" data-activity="When the job needs it">
+                <h3 class="heading-style-h4 margin-bottom margin-xsmall">When the job needs it</h3>
+                <ul class="hub_chip-list">
+                  <li class="component_chip"><img src="../images/icons/tech/icon-wordpress-white.svg" alt="" width="24" height="24" class="chip_icon">WordPress</li>
+                  <li class="component_chip"><img src="../images/icons/tech/icon-elementor-white.svg" alt="" width="24" height="24" class="chip_icon">Elementor Pro</li>
+                  <li class="component_chip"><img src="../images/icons/tech/icon-woocommerce-white.svg" alt="" width="24" height="24" class="chip_icon">WooCommerce</li>
+                  <li class="component_chip"><img src="../images/icons/ui/icon-wrench-white.svg" alt="" width="24" height="24" class="chip_icon">Maropost Commerce Cloud</li>
+                  <li class="component_chip"><img src="../images/icons/tech/icon-astro-white.svg" alt="" width="24" height="24" class="chip_icon">Astro</li>
+                  <li class="component_chip"><img src="../images/icons/tech/icon-webflow-white.svg" alt="" width="24" height="24" class="chip_icon">Webflow Cloud</li>
+                  <li class="component_chip"><img src="../images/icons/tech/icon-nextdotjs-white.svg" alt="" width="24" height="24" class="chip_icon">Next.js</li>
+                </ul>
+              </div>
+              <div class="hub_toolkit-group" data-activity="Learning now">
+                <h3 class="heading-style-h4 margin-bottom margin-xsmall">Learning now</h3>
+                <ul class="hub_chip-list">
+                  <li class="component_chip is-outline"><img src="../images/icons/tech/icon-go-white.svg" alt="" width="24" height="24" class="chip_icon">Go</li>
+                  <li class="component_chip is-outline"><img src="../images/icons/tech/icon-php-white.svg" alt="" width="24" height="24" class="chip_icon">PHP</li>
+                  <li class="component_chip is-outline"><img src="../images/icons/tech/icon-godotengine-white.svg" alt="" width="24" height="24" class="chip_icon">Godot</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="hub_panel" data-hub-panel="system" aria-labelledby="hub-system-heading">
+            <h2 id="hub-system-heading" class="heading-style-h2 margin-bottom margin-small">I use AI the boring, careful way.</h2>
+            <p class="text-size-large max-width-large margin-bottom margin-medium">I work with Claude Code as a second pair of hands. It doesn't decide anything. It follows a rule book I wrote and keep up to date: my standards, each client's preferences, and the mistakes that became rules. That's why the output reads like me and not like a template.</p>
+            <p class="hub_meta">What that system includes</p>
+            <ul class="hub_list">
+              <li class="hub_list-item" data-activity="A Webflow starter kit"><p>A Webflow starter kit with my own variable system, breakpoints, utilities and motion presets, tested on a guinea pig site before any client sees it.</p></li>
+              <li class="hub_list-item" data-activity="Written standards"><p>Written standards for builds, QA and accessibility, refined across every project.</p></li>
+              <li class="hub_list-item" data-activity="Checklists"><p>Checklists that catch the things AI tools get wrong: invented copy, generic layouts, motion that never finishes.</p></li>
+            </ul>
+          </article>
+
+          <article class="hub_panel" data-hub-panel="off" aria-labelledby="hub-off-heading">
+            <h2 id="hub-off-heading" class="heading-style-h2 margin-bottom margin-medium">Off the clock.</h2>
+            <div class="hub_card-grid">
+              <div class="hub_card" data-activity="Malaki Ethics Co"><img src="../images/icons/ui/icon-users-white.svg" alt="" width="24" height="24" class="hub_card-icon"><h3 class="heading-style-h3 margin-bottom margin-xxsmall">Malaki Ethics Co</h3><p class="text-color-secondary">A three-person Webflow and Shopify studio I run with Pat and Paul. Straight numbers, honest timelines, no dark patterns.</p></div>
+              <div class="hub_card" data-activity="Games"><img src="../images/icons/ui/icon-gamepad-2-white.svg" alt="" width="24" height="24" class="hub_card-icon"><h3 class="heading-style-h3 margin-bottom margin-xxsmall">Games</h3><p class="text-color-secondary">I'm learning Godot and making small games. Level design and building environments are the parts I love most.</p></div>
+            </div>
+            <div class="button-group hub_media-links">
+              <button type="button" class="button is-secondary" data-open-album="bataan"><img src="../images/icons/ui/icon-map-pin-white.svg" alt="" width="24" height="24" class="button-icon">Balanga, Bataan</button>
+              <button type="button" class="button is-secondary" data-open-album="garage"><img src="../images/icons/ui/icon-car-white.svg" alt="" width="24" height="24" class="button-icon">Corolla Big Body</button>
+            </div>
+          </article>
+
+          <article class="hub_panel" data-hub-panel="faq" aria-labelledby="hub-faq-heading">
+            <h2 id="hub-faq-heading" class="heading-style-h2 margin-bottom margin-medium">Good to know.</h2>
+            <div class="hub_faq-list">
+              <details class="component_faq" data-activity="Where are you?"><summary class="faq_question">Where are you, and when are you online?</summary><div class="faq_answer"><p>The Philippines. My working day overlaps most of the Australian business day.</p></div></details>
+              <details class="component_faq" data-activity="Agencies"><summary class="faq_question">Do you work with agencies?</summary><div class="faq_answer"><p>Yes, most of my work is with agencies. I work in your Webflow workspace, your Figma and your ticket board, and I can work white-label.</p></div></details>
+              <details class="component_faq" data-activity="What do you need?"><summary class="faq_question">What do you need from me to start?</summary><div class="faq_answer"><p>The design file or references, the copy, brand fonts with their web licence, and who signs off.</p></div></details>
+              <details class="component_faq"><summary class="faq_question">Can you work from screenshots instead of Figma?</summary><div class="faq_answer"><p>Yes. Great Southern Homes was mostly built that way.</p></div></details>
+            </div>
+            <details class="hub_credits">
+              <summary class="hub_credits-toggle">Photo and icon credits</summary>
+              <ul class="hub_credits-list text-size-small">
+                <li><a href="https://commons.wikimedia.org/wiki/File:Balanga_Cathedral,_Bataan,_Apr_2026.jpg">Balanga Cathedral</a>, <a href="https://commons.wikimedia.org/wiki/File:Galleria_Victoria,_Balanga,_Bataan,_Apr_2026.jpg">Galleria Victoria</a> and <a href="https://commons.wikimedia.org/wiki/File:Balanga_City_Hall,_Bataan,_Apr_2026.jpg">Balanga City Hall</a> by Ralff Nestor Nacor, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Plaza_Mayor_de_Balanga.png">Plaza Mayor de Balanga</a> by Makubex1985, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Sunset_photo_of_Mt._Samat_Cross.jpg">Sunset photo of Mt. Samat Cross</a> by EdseastresD600, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Mount_Samat_remote_view.jpg">Mount Samat remote view</a> by P199, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Toyota_Corolla_1.6_GLi_1993.jpg">Toyota Corolla 1.6 GLi 1993</a> by Ethan Llamas, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Toyota_Corolla_1.6_GLi_1997_(27700288257).jpg">Toyota Corolla 1.6 GLi 1997</a> by RL GNZLZ, <a href="https://creativecommons.org/licenses/by-sa/2.0">CC BY-SA 2.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:1995_Toyota_Corolla_(AE101R)_CSi_sedan_(2015-07-24)_01.jpg">1995 Toyota Corolla (AE101R) CSi sedan</a> by OSX, public domain</li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Toyota_Corolla,_Washinomiya,_Saitama,_Japan.jpg">Toyota Corolla, Washinomiya, Saitama</a> by Vasconium, <a href="https://creativecommons.org/licenses/by-sa/2.0">CC BY-SA 2.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Toyota_Corolla_1.4_XLE_1993.jpg">Toyota Corolla 1.4 XLE 1993</a> by Captainmorlypogi1959, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a></li>
+                <li>Photos were resized and converted to WebP. Icons: <a href="https://lucide.dev">Lucide</a> (ISC) and <a href="https://simpleicons.org">Simple Icons</a> (CC0); brand logos belong to their owners. Console-inspired interface, not affiliated with any console maker.</li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="hub_panel" data-hub-panel="contact" aria-labelledby="hub-contact-heading">
+            <h2 id="hub-contact-heading" class="heading-style-h1 margin-bottom margin-small max-width-large">Got a build that needs doing properly?</h2>
+            <p class="text-size-large max-width-medium margin-bottom margin-medium">Send me the brief, the Figma link or just a few screenshots. I'll tell you what it needs, what it doesn't, and what it'll take, in writing.</p>
+            <div class="button-group">
+              <a href="https://github.com/kilvs" class="button" data-activity="GitHub"><img src="../images/icons/tech/icon-github-dark.svg" alt="" width="24" height="24" class="button-icon">GitHub</a>
+            </div>
+            <p class="hub_placeholder">[PLACEHOLDER: email address] [PLACEHOLDER: LinkedIn]</p>
+          </article>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Component: Media viewer (one Swiper per album) -->
+    <div class="component_viewer" data-viewer role="dialog" aria-modal="true" aria-labelledby="viewer-title" aria-hidden="true">
+      <div class="viewer_bar">
+        <button type="button" class="button is-secondary is-small" data-viewer-close><span class="glyph is-circle" aria-hidden="true"></span>Back</button>
+        <p class="viewer_title" id="viewer-title" data-viewer-title>Album</p>
+        <p class="viewer_counter text-size-small" data-viewer-counter></p>
+      </div>
+
+      <div class="viewer_album" data-viewer-album="bataan" hidden>
+        <div class="swiper viewer_slider" data-swiper="viewer-bataan">
+          <div class="swiper-wrapper">
+            <figure class="swiper-slide viewer_slide"><img src="../images/photos/balanga-cathedral-2400.webp" srcset="../images/photos/balanga-cathedral-1200.webp 1200w, ../images/photos/balanga-cathedral-2400.webp 2400w" sizes="100vw" width="2400" height="1807" alt="Balanga Cathedral, a red brick and white church facade behind a plaza with palm trees" loading="lazy" class="viewer_image"><figcaption class="viewer_caption"><span>Balanga Cathedral</span><span class="viewer_credit">Ralff Nestor Nacor, CC BY-SA 4.0</span></figcaption></figure>
+            <figure class="swiper-slide viewer_slide"><img src="../images/photos/balanga-plaza-mayor-1862.webp" srcset="../images/photos/balanga-plaza-mayor-1200.webp 1200w, ../images/photos/balanga-plaza-mayor-1862.webp 1862w" sizes="100vw" width="1862" height="960" alt="Aerial view of the Plaza Mayor de Balanga and the surrounding city" loading="lazy" class="viewer_image"><figcaption class="viewer_caption"><span>Plaza Mayor de Balanga</span><span class="viewer_credit">Makubex1985, CC BY-SA 4.0</span></figcaption></figure>
+            <figure class="swiper-slide viewer_slide"><img src="../images/photos/mount-samat-sunset-2400.webp" srcset="../images/photos/mount-samat-sunset-1200.webp 1200w, ../images/photos/mount-samat-sunset-2400.webp 2400w" sizes="100vw" width="2400" height="1598" alt="The sun setting behind Mount Samat and its memorial cross" loading="lazy" class="viewer_image"><figcaption class="viewer_caption"><span>Mount Samat at sunset</span><span class="viewer_credit">EdseastresD600, CC BY-SA 4.0</span></figcaption></figure>
+            <figure class="swiper-slide viewer_slide"><img src="../images/photos/mount-samat-fields-2400.webp" srcset="../images/photos/mount-samat-fields-1200.webp 1200w, ../images/photos/mount-samat-fields-2400.webp 2400w" sizes="100vw" width="2400" height="1350" alt="Mount Samat seen across green rice fields" loading="lazy" class="viewer_image"><figcaption class="viewer_caption"><span>Mount Samat</span><span class="viewer_credit">P199, CC BY-SA 4.0</span></figcaption></figure>
+            <figure class="swiper-slide viewer_slide"><img src="../images/photos/balanga-galleria-victoria-2400.webp" srcset="../images/photos/balanga-galleria-victoria-1200.webp 1200w, ../images/photos/balanga-galleria-victoria-2400.webp 2400w" sizes="100vw" width="2400" height="1807" alt="Galleria Victoria, a white colonial-style building with arched balconies" loading="lazy" class="viewer_image"><figcaption class="viewer_caption"><span>Galleria Victoria</span><span class="viewer_credit">Ralff Nestor Nacor, CC BY-SA 4.0</span></figcaption></figure>
+            <figure class="swiper-slide viewer_slide"><img src="../images/photos/balanga-city-hall-2400.webp" srcset="../images/photos/balanga-city-hall-1200.webp 1200w, ../images/photos/balanga-city-hall-2400.webp 2400w" sizes="100vw" width="2400" height="1807" alt="Balanga City Hall, a white building with columns and balconies" loading="lazy" class="viewer_image"><figcaption class="viewer_caption"><span>Balanga City Hall</span><span class="viewer_credit">Ralff Nestor Nacor, CC BY-SA 4.0</span></figcaption></figure>
+          </div>
+        </div>
+      </div>
+
+      <div class="viewer_album" data-viewer-album="garage" hidden>
+        <div class="swiper viewer_slider" data-swiper="viewer-garage">
+          <div class="swiper-wrapper">
+            <figure class="swiper-slide viewer_slide"><img src="../images/photos/corolla-gli-white-1993-2400.webp" srcset="../images/photos/corolla-gli-white-1993-1200.webp 1200w, ../images/photos/corolla-gli-white-1993-2400.webp 2400w" sizes="100vw" width="2400" height="1801" alt="A white Toyota Corolla 1.6 GLi sedan from 1993, the Big Body generation" loading="lazy" class="viewer_image"><figcaption class="viewer_caption"><span>Corolla 1.6 GLi, 1993</span><span class="viewer_credit">Ethan Llamas, CC BY-SA 4.0</span></figcaption></figure>
+            <figure class="swiper-slide viewer_slide"><img src="../images/photos/corolla-gli-white-1997-2400.webp" srcset="../images/photos/corolla-gli-white-1997-1200.webp 1200w, ../images/photos/corolla-gli-white-1997-2400.webp 2400w" sizes="100vw" width="2400" height="1440" alt="A white Toyota Corolla 1.6 GLi sedan parked on a street" loading="lazy" class="viewer_image"><figcaption class="viewer_caption"><span>Corolla 1.6 GLi, 1997</span><span class="viewer_credit">RL GNZLZ, CC BY-SA 2.0</span></figcaption></figure>
+            <figure class="swiper-slide viewer_slide"><img src="../images/photos/corolla-ae101-white-csi-2400.webp" srcset="../images/photos/corolla-ae101-white-csi-1200.webp 1200w, ../images/photos/corolla-ae101-white-csi-2400.webp 2400w" sizes="100vw" width="2400" height="1605" alt="A white Toyota Corolla AE101 sedan parked at the kerb beside a picket fence" loading="lazy" class="viewer_image"><figcaption class="viewer_caption"><span>Corolla AE101</span><span class="viewer_credit">OSX, public domain</span></figcaption></figure>
+            <figure class="swiper-slide viewer_slide"><img src="../images/photos/corolla-e100-white-japan-2400.webp" srcset="../images/photos/corolla-e100-white-japan-1200.webp 1200w, ../images/photos/corolla-e100-white-japan-2400.webp 2400w" sizes="100vw" width="2400" height="1800" alt="A white Toyota Corolla E100 sedan in a parking lot in Saitama, Japan" loading="lazy" class="viewer_image"><figcaption class="viewer_caption"><span>Corolla E100, Saitama</span><span class="viewer_credit">Vasconium, CC BY-SA 2.0</span></figcaption></figure>
+            <figure class="swiper-slide viewer_slide"><img src="../images/photos/corolla-xle-white-1993-2400.webp" srcset="../images/photos/corolla-xle-white-1993-1200.webp 1200w, ../images/photos/corolla-xle-white-1993-2400.webp 2400w" sizes="100vw" width="2400" height="1800" alt="A white Toyota Corolla 1.4 XLE sedan from 1993 photographed at night" loading="lazy" class="viewer_image"><figcaption class="viewer_caption"><span>Corolla 1.4 XLE, 1993</span><span class="viewer_credit">Captainmorlypogi1959, CC BY-SA 4.0</span></figcaption></figure>
+          </div>
+        </div>
+      </div>
+
+      <div class="viewer_album" data-viewer-album="eugene" hidden>
+        <div class="swiper viewer_slider" data-swiper="viewer-eugene">
+          <div class="swiper-wrapper">
+            <figure class="swiper-slide viewer_slide"><img src="../images/photos/eugene-portrait-blue-1672.webp" width="1672" height="941" alt="Eugene in a black hoodie and orange-tinted sunglasses, smiling against a blue backdrop" loading="lazy" class="viewer_image"><figcaption class="viewer_caption"><span>Eugene</span></figcaption></figure>
+            <figure class="swiper-slide viewer_slide"><img src="../images/photos/eugene-portrait-street-1122.webp" width="1122" height="1402" alt="Eugene in a black hoodie outside a cafe at golden hour" loading="lazy" class="viewer_image"><figcaption class="viewer_caption"><span>Eugene</span></figcaption></figure>
+          </div>
+        </div>
+      </div>
+
+      <div class="viewer_controls">
+        <button type="button" class="button is-secondary is-icon" data-viewer-prev aria-label="Previous photo"><img src="../images/icons/ui/icon-chevron-left-white.svg" alt="" width="24" height="24" class="button-icon"></button>
+        <button type="button" class="button is-secondary is-icon" data-viewer-next aria-label="Next photo"><img src="../images/icons/ui/icon-chevron-right-white.svg" alt="" width="24" height="24" class="button-icon"></button>
+      </div>
+    </div>
+
+    <!-- Component: Trophies -->
+    <div class="component_trophies" data-trophies role="dialog" aria-modal="true" aria-labelledby="trophies-title" aria-hidden="true">
+      <div class="hub_backdrop" data-trophies-close aria-hidden="true"></div>
+      <div class="trophies_window">
+        <div class="trophies_header">
+          <div>
+            <p class="hub_meta">Eugene Quilban</p>
+            <h2 id="trophies-title" class="heading-style-h2">Trophies</h2>
+          </div>
+          <div class="trophies_progress">
+            <span class="trophies_progress-value" data-trophy-percent>0%</span>
+            <span class="trophies_progress-track"><span class="trophies_progress-fill" data-trophy-bar></span></span>
+          </div>
+        </div>
+        <ul class="trophies_list" data-trophy-list></ul>
+        <div class="button-group">
+          <button type="button" class="button is-secondary is-small" data-trophies-close><span class="glyph is-circle" aria-hidden="true"></span>Back</button>
+          <button type="button" class="button is-secondary is-small" data-trophies-reset>Reset trophies</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component: Trophy toast -->
+    <div class="component_toast" data-toast role="status" aria-live="polite">
+      <span class="toast_icon" data-toast-grade></span>
+      <span class="toast_text"><span class="toast_label">Trophy earned</span><span class="toast_name" data-toast-name></span></span>
+    </div>
+
+    <!-- Component: Control hints -->
+    <div class="hints_component" aria-hidden="true">
+      <span class="hints_item"><span class="hints_key">&larr; &rarr;</span>Browse</span>
+      <span class="hints_item"><span class="glyph is-cross"></span><span class="hints_key">Enter</span>Open</span>
+      <span class="hints_item"><span class="glyph is-circle"></span><span class="hints_key">Esc</span>Back</span>
+      <span class="hints_item"><span class="hints_key">Q E</span>Switch tab</span>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@14.2.0/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script src="js/console.js?v=a17d982c"></script>
+</body>
+</html>

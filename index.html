@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eugene Quilban, Webflow developer</title>
+  <meta name="description" content="I turn Figma files and client feedback into clean, fast Webflow sites on Finsweet Client-First. Your words stay your words, every change is written down, and nothing goes live until you say so.">
+  <meta name="theme-color" content="#05061a">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/BricolageGrotesque-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&amp;display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@14.2.0/swiper-bundle.min.css">
+  <link rel="stylesheet" href="css/landing.css?v=7">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Space: nebula tints, the WebGL cosmos (Three.js) and a 2D fallback starfield -->
+  <div class="space_component" aria-hidden="true">
+    <div class="space_nebula is-violet" data-nebula="violet"></div>
+    <div class="space_nebula is-blue" data-nebula="blue"></div>
+    <div class="space_nebula is-pink" data-nebula="pink"></div>
+    <div class="space_nebula is-mango" data-nebula="mango"></div>
+    <canvas class="space_stars" data-starfield></canvas>
+    <canvas class="space_cosmos" data-cosmos></canvas>
+  </div>
+
+  <div class="cursor_component" aria-hidden="true">
+    <div class="cursor_ring" data-cursor-ring></div>
+    <div class="cursor_dot" data-cursor-dot></div>
+  </div>
+
+  <div class="toast_list" data-toasts role="status" aria-live="polite"></div>
+
+  <!-- ============ NAV: logo + burger on every width ============ -->
+  <header class="nav_component" data-nav>
+    <div class="nav_inner">
+      <button type="button" class="nav_logo" data-logo aria-label="Eugene Quilban. Make the logo bigger.">
+        <svg class="nav_logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="20" cy="20" r="11" class="nav_logo-planet"/>
+          <ellipse cx="20" cy="20" rx="19" ry="6" transform="rotate(-20 20 20)" class="nav_logo-ring"/>
+          <circle cx="35" cy="12" r="2.4" class="nav_logo-moon"/>
+        </svg>
+        <span class="nav_logo-text">Eugene Quilban</span>
+      </button>
+      <button type="button" class="nav_burger" data-burger aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+        <span class="nav_burger-label" data-burger-label data-meme-swap="Hyperdrive">Menu</span>
+        <span class="nav_burger-icon" aria-hidden="true">
+          <span class="nav_burger-line" data-burger-line></span>
+          <span class="nav_burger-line" data-burger-line></span>
+          <span class="nav_burger-line" data-burger-line></span>
+        </span>
+      </button>
+    </div>
+    <div class="nav_progress" aria-hidden="true"><div class="nav_progress-bar" data-progress></div></div>
+  </header>
+
+  <!-- ============ OFF-CANVAS MENU: a warp portal ============ -->
+  <div class="menu_component" id="menu" data-menu data-lenis-prevent hidden role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="menu_portal" data-menu-portal aria-hidden="true">
+      <div class="menu_swirl" data-menu-swirl></div>
+      <svg class="menu_rings" viewBox="0 0 800 800" data-menu-rings>
+        <ellipse cx="400" cy="400" rx="380" ry="120" class="menu_ring is-1"/>
+        <path d="M100 400 a300 300 0 1 0 600 0 a300 300 0 1 0 -600 0" class="menu_ring is-2" data-menu-orbit/>
+        <ellipse cx="400" cy="400" rx="200" ry="360" class="menu_ring is-3"/>
+        <circle cx="0" cy="0" r="10" class="menu_moon" data-menu-moon/>
+      </svg>
+      <div class="menu_stars" data-menu-stars></div>
+      <svg class="menu_rocket" viewBox="0 0 80 40" data-menu-rocket><path d="M4 20 L18 10 H54 C66 10 76 16 76 20 C76 24 66 30 54 30 H18Z" class="rocket_body"/><circle cx="56" cy="20" r="5" class="rocket_window"/><path d="M4 20 L-14 12 L-10 20 L-14 28Z" class="rocket_flame"/></svg>
+    </div>
+    <div class="menu_inner">
+      <p class="menu_kicker" data-menu-kicker data-meme-swap="Where to, captain?">Jump to</p>
+      <nav aria-label="Main">
+        <ol class="menu_list">
+          <li class="menu_item" data-menu-item><a href="#top" class="menu_link" data-menu-link><span class="menu_link-text">Launchpad</span></a></li>
+          <li class="menu_item" data-menu-item><a href="#about" class="menu_link" data-menu-link><span class="menu_link-text">About</span></a></li>
+          <li class="menu_item" data-menu-item><a href="#services" class="menu_link" data-menu-link><span class="menu_link-text">What I do</span></a></li>
+          <li class="menu_item" data-menu-item><a href="#work" class="menu_link" data-menu-link><span class="menu_link-text">Work</span></a></li>
+          <li class="menu_item" data-menu-item><a href="#how" class="menu_link" data-menu-link><span class="menu_link-text">How I work</span></a></li>
+          <li class="menu_item" data-menu-item><a href="#toolkit" class="menu_link" data-menu-link><span class="menu_link-text">Toolkit</span></a></li>
+          <li class="menu_item" data-menu-item><a href="#contact" class="menu_link" data-menu-link><span class="menu_link-text">Contact</span></a></li>
+        </ol>
+      </nav>
+      <div class="menu_aside" data-menu-aside>
+        <p class="menu_meme" data-meme-only>Fun fact: this menu is a wormhole. Please keep your hands inside the browser.</p>
+        <a href="https://github.com/kilvs" class="menu_social"><img src="images/icons/tech/icon-github-white.svg" alt="" width="20" height="20">GitHub (kilvs)</a>
+        <span class="placeholder">[PLACEHOLDER: email address]</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mission control dock -->
+  <aside class="dock_component" aria-label="Mission control">
+    <button type="button" class="dock_toggle" data-dock-toggle aria-expanded="false" aria-controls="dock-panel">
+      <svg viewBox="0 0 24 24" class="dock_icon" aria-hidden="true"><path d="M12 2c3 2.5 4.5 6 4.5 10.5L14 16h-4l-2.5-3.5C7.5 8 9 4.5 12 2Z"/><circle cx="12" cy="9" r="1.8"/><path d="M10 16l-2 5 4-2 4 2-2-5"/></svg>
+      <span class="dock_toggle-text">Mission control</span>
+    </button>
+    <div class="dock_panel" id="dock-panel" data-dock-panel hidden>
+      <label class="dock_switch"><input type="checkbox" class="dock_switch-input" data-switch="meme" checked><span class="dock_switch-track" aria-hidden="true"><span class="dock_switch-thumb"></span></span><span class="dock_switch-label">Meme mode</span></label>
+      <label class="dock_switch"><input type="checkbox" class="dock_switch-input" data-switch="gravity"><span class="dock_switch-track" aria-hidden="true"><span class="dock_switch-thumb"></span></span><span class="dock_switch-label">Gravity</span></label>
+      <label class="dock_switch"><input type="checkbox" class="dock_switch-input" data-switch="warp"><span class="dock_switch-track" aria-hidden="true"><span class="dock_switch-thumb"></span></span><span class="dock_switch-label">Warp speed</span></label>
+      <p class="dock_note" data-meme-only>Pro tip: click empty space for a supernova. The Konami code still works too.</p>
+    </div>
+  </aside>
+
+  <div class="page-wrapper" data-page>
+    <main id="main" class="main-wrapper">
+
+      <!-- ============ HERO ============ -->
+      <section id="top" class="section_hero" data-section="violet" data-shape="galaxy" data-hero>
+        <div class="hero_scene" data-hero-scene>
+          <div class="hero_layer is-far" data-depth="0.2" aria-hidden="true">
+            <svg class="hero_planet is-small" viewBox="0 0 120 120"><defs><linearGradient id="pSmall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8fc0"/><stop offset="1" stop-color="#7b4bff"/></linearGradient></defs><circle cx="60" cy="60" r="34" fill="url(#pSmall)"/><path d="M30 52c20 6 40 6 60-2M28 66c22 6 44 5 64-2" class="hero_planet-band"/></svg>
+            <svg class="hero_satellite" viewBox="0 0 120 60"><rect x="48" y="20" width="24" height="20" rx="4" class="sat_body"/><rect x="4" y="24" width="38" height="12" rx="2" class="sat_panel"/><rect x="78" y="24" width="38" height="12" rx="2" class="sat_panel"/><path d="M60 20V8" class="sat_line"/><circle cx="60" cy="6" r="3" class="sat_dish"/></svg>
+          </div>
+          <div class="hero_layer is-mid" data-depth="0.5" aria-hidden="true">
+            <svg class="hero_planet is-ringed" viewBox="0 0 260 200">
+              <defs><linearGradient id="pRinged" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd27a"/><stop offset="1" stop-color="#ff6f61"/></linearGradient></defs>
+              <path d="M24 118c10-30 200-70 212-44" class="hero_ring is-back"/>
+              <circle cx="130" cy="100" r="58" fill="url(#pRinged)"/>
+              <path d="M84 84c30 10 62 10 92-4M78 108c34 10 70 10 104-4" class="hero_planet-band"/>
+              <path d="M236 74c10 30-200 70-212 44" class="hero_ring is-front"/>
+            </svg>
+          </div>
+
+          <div class="hero_component">
+            <p class="hero_eyebrow" data-hero-eyebrow>Webflow developer. Philippines based. Working with Australia and the US.</p>
+            <div class="hero_orbit" data-orbit aria-hidden="true">
+              <div class="hero_orbit-tilt" data-orbit-tilt>
+                <div class="hero_orbit-path is-1"></div>
+                <div class="hero_orbit-path is-2"></div>
+                <div class="hero_orbit-core">
+                  <img src="images/photos/eugene-portrait-street-640.webp" width="640" height="800" alt="" class="hero_orbit-photo">
+                  <span class="hero_orbit-helmet"></span>
+                </div>
+                <span class="hero_orbit-item" data-orbit-item data-ring="1"><img src="images/icons/tech/icon-webflow-white.svg" alt="" width="24" height="24"></span>
+                <span class="hero_orbit-item" data-orbit-item data-ring="1"><img src="images/icons/tech/icon-figma-white.svg" alt="" width="24" height="24"></span>
+                <span class="hero_orbit-item" data-orbit-item data-ring="1"><img src="images/icons/tech/icon-gsap-white.svg" alt="" width="24" height="24"></span>
+                <span class="hero_orbit-item" data-orbit-item data-ring="2"><img src="images/icons/tech/icon-javascript-white.svg" alt="" width="24" height="24"></span>
+                <span class="hero_orbit-item" data-orbit-item data-ring="2"><img src="images/icons/tech/icon-css-white.svg" alt="" width="24" height="24"></span>
+                <span class="hero_orbit-item" data-orbit-item data-ring="2"><img src="images/icons/tech/icon-wordpress-white.svg" alt="" width="24" height="24"></span>
+                <span class="hero_orbit-item" data-orbit-item data-ring="2"><img src="images/icons/tech/icon-astro-white.svg" alt="" width="24" height="24"></span>
+                <span class="hero_orbit-item" data-orbit-item data-ring="2"><img src="images/icons/tech/icon-godotengine-white.svg" alt="" width="24" height="24"></span>
+              </div>
+            </div>
+            <h1 class="hero_heading" data-hero-heading>I build it properly, then I check it in the real browser.</h1>
+            <p class="sticker is-mango hero_meme" data-meme-only data-hero-meme data-float>Wild concept, I know.</p>
+            <div class="hero_aside">
+              <p class="hero_subhead" data-hero-sub>I turn Figma files and client feedback into clean, fast Webflow sites on Finsweet Client-First. Your words stay your words, every change is written down, and nothing goes live until you say so.</p>
+              <div class="hero_buttons" data-hero-buttons>
+                <a href="#work" class="button is-primary" data-scroll-to data-magnetic>See the work</a>
+                <a href="#contact" class="button is-secondary" data-scroll-to data-magnetic>Get in touch</a>
+              </div>
+            </div>
+            <p class="sticker is-pink hero_sticker" data-meme-only data-float>it works on my <s>machine</s> real browser</p>
+          </div>
+
+          <div class="hero_scroll" aria-hidden="true">
+            <span class="hero_scroll-line"></span>
+            <span class="hero_scroll-text" data-meme-swap="Scroll. The divs are waiting.">Scroll</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ MARQUEE ============ -->
+      <div class="marquee_component" aria-hidden="true" data-marquee>
+        <div class="marquee_row is-a" data-marquee-row="1">
+          <div class="marquee_inner"><div class="marquee_track"><span>Webflow</span><i class="marquee_star"></i><span>Finsweet Client-First</span><i class="marquee_star"></i><span>Webflow Interactions (IX3)</span><i class="marquee_star"></i><span>Figma</span><i class="marquee_star"></i><span>HTML</span><i class="marquee_star"></i><span>CSS</span><i class="marquee_star"></i><span>JavaScript</span><i class="marquee_star"></i></div></div>
+        </div>
+        <div class="marquee_row is-b" data-marquee-row="-1">
+          <div class="marquee_inner"><div class="marquee_track"><span>No em dashes were harmed</span><i class="marquee_star"></i><span>Divs centred in zero gravity</span><i class="marquee_star"></i><span>Make the logo bigger</span><i class="marquee_star"></i><span>Works in the real browser</span><i class="marquee_star"></i><span>Ship it (on your yes)</span><i class="marquee_star"></i></div></div>
+        </div>
+      </div>
+
+      <!-- ============ ABOUT ============ -->
+      <section id="about" class="section_about" data-section="pink" data-shape="planet">
+        <div class="about_component">
+          <div class="about_visual" data-tilt>
+            <div class="about_porthole">
+              <img src="images/photos/eugene-portrait-blue-900.webp" srcset="images/photos/eugene-portrait-blue-900.webp 900w, images/photos/eugene-portrait-blue-1672.webp 1672w" sizes="(max-width: 767px) 90vw, 45vw" width="900" height="507" alt="Eugene against a blue backdrop" class="about_photo" loading="lazy" data-parallax-inner>
+            </div>
+            <svg class="about_constellation" viewBox="0 0 300 200" aria-hidden="true" data-constellation>
+              <path d="M20 160 L80 120 L130 140 L190 70 L250 90 L280 30" class="constellation_line"/>
+              <circle cx="20" cy="160" r="4"/><circle cx="80" cy="120" r="3"/><circle cx="130" cy="140" r="5"/><circle cx="190" cy="70" r="3.5"/><circle cx="250" cy="90" r="3"/><circle cx="280" cy="30" r="5"/>
+            </svg>
+            <p class="sticker is-mango about_sticker" data-meme-only data-float>certified div centrer</p>
+          </div>
+          <h2 class="heading-style-display about_heading" data-split-heading data-meme-swap="Hi, I'm Eugene. Yes, the one who centres divs.">Hi, I'm Eugene.</h2>
+          <div class="about_text" data-word-scrub>
+            <p class="text-size-large">I'm a web developer from the Philippines. Most days I'm inside Webflow, building sites for agencies and their clients in Australia and the US. I work through Double Shot Growth, Rivyl and Atelic Digital, and I co-run a small studio of my own, Malaki Ethics Co.</p>
+            <p>I came to development through design and front-end, and I still care most about the parts a client can see: type that never leaves an orphan, motion that stays calm, cards that feel designed instead of flat. The engineering is there to protect that. Tokens, components and a written log of every decision mean a site still makes sense to the next person who opens it.</p>
+            <p>I'm direct. If a request will hurt the site, I'll say so in one line and then build what you asked for. If I'm unsure what you meant, I'll build the literal version and ask the one question that matters.</p>
+            <p class="placeholder">[PLACEHOLDER: years of experience / how you started, one line, only if you want it]</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ WHAT I DO: Swiper, each service is a planet ============ -->
+      <section id="services" class="section_services" data-section="blue" data-shape="torus">
+        <div class="services_head">
+          <h2 class="heading-style-display" data-split-heading data-meme-swap="Things I do so you don't have to cry in Figma.">What I can take off your plate.</h2>
+          <p class="services_hint" data-meme-swap="Drag it. It's a carousel. In space. Obviously.">Drag, swipe or use the arrows.</p>
+        </div>
+        <div class="services_slider swiper" data-services-swiper>
+          <div class="swiper-wrapper">
+            <article class="swiper-slide services_slide is-blue">
+              <div class="services_planet" aria-hidden="true">
+                <div class="viz-f2w">
+                  <div class="viz-f2w_frame is-figma"><i></i><i></i><i></i></div>
+                  <svg class="viz-f2w_beam" viewBox="0 0 100 40"><path d="M2 20 C 35 0, 65 40, 98 20" class="viz-f2w_path"/></svg>
+                  <div class="viz-f2w_frame is-webflow"><i></i><i></i><i></i></div>
+                  <span class="viz-f2w_ufo"></span>
+                </div>
+              </div>
+              <div class="services_copy">
+                <h3 class="heading-style-h2">Figma to Webflow builds</h3>
+                <p class="services_meme" data-meme-only>Pixel perfect. The pixels filed no complaints.</p>
+                <p>Hi-fi designs converted 1:1 on Client-First: variables, utility classes, components with props and variants, CMS collections and templates. Built so the Designer canvas is the source of truth, not a pile of custom code.</p>
+              </div>
+            </article>
+            <article class="swiper-slide services_slide is-violet">
+              <div class="services_planet" aria-hidden="true">
+                <svg class="viz-ease" viewBox="0 0 200 120">
+                  <path d="M10 110 C 80 110, 90 10, 190 10" class="viz-ease_curve" data-ease-curve/>
+                  <circle r="7" class="viz-ease_dot" data-ease-dot/>
+                  <path d="M10 10 V110 H190" class="viz-ease_axis"/>
+                </svg>
+              </div>
+              <div class="services_copy">
+                <h3 class="heading-style-h2">Motion and interaction</h3>
+                <p class="services_meme" data-meme-only>Smooth like butter. Reduced-motion users get the butter, minus the wobble.</p>
+                <p>Scroll reveals, parallax, sliders, tabs, accordions and nav states in Webflow Interactions (IX3, GSAP under the hood). Subtle by default, off for people who ask for reduced motion, and never in the way of the page loading.</p>
+              </div>
+            </article>
+            <article class="swiper-slide services_slide is-pink">
+              <div class="services_planet" aria-hidden="true">
+                <div class="viz-swatch" data-swatches><i class="is-a"></i><i class="is-b"></i><i class="is-c"></i><i class="is-d"></i></div>
+              </div>
+              <div class="services_copy">
+                <h3 class="heading-style-h2">Design that doesn't look AI-made</h3>
+                <p class="services_meme" data-meme-only>Ironic, coming from a site with a meme mode. Toggle it off, I dare you.</p>
+                <p>When there is no reference, I design with the client's brand guide: contrasting section grounds, soft gradients, real shadows, mock UI built in HTML and CSS instead of stock screenshots.</p>
+              </div>
+            </article>
+            <article class="swiper-slide services_slide is-mango">
+              <div class="services_planet" aria-hidden="true">
+                <div class="viz-fix">
+                  <div class="viz-fix_window"><span class="viz-fix_bar"></span><span class="viz-fix_block" data-fix-block></span><span class="viz-fix_line"></span><span class="viz-fix_line is-short"></span></div>
+                  <svg class="viz-fix_wrench" viewBox="0 0 24 24" data-fix-wrench><path d="M14.7 6.3a4 4 0 0 0 5 5l-8.4 8.4a2 2 0 0 1-2.8-2.8l8.4-8.4a4 4 0 0 0-2.2-2.2Z"/></svg>
+                </div>
+              </div>
+              <div class="services_copy">
+                <h3 class="heading-style-h2">Fixes on live sites</h3>
+                <p class="services_meme" data-meme-only>This is fine. (I took a backup first, so it actually is.)</p>
+                <p>WordPress, Elementor and Maropost sites that misbehave. I read the code first, take a backup, change as little as possible and leave revert steps behind.</p>
+              </div>
+            </article>
+            <article class="swiper-slide services_slide is-green">
+              <div class="services_planet" aria-hidden="true">
+                <div class="viz-rings" data-rings>
+                  <svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" class="ring_bg"/><circle cx="22" cy="22" r="18" class="ring_fg"/></svg>
+                  <svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" class="ring_bg"/><circle cx="22" cy="22" r="18" class="ring_fg"/></svg>
+                  <svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" class="ring_bg"/><circle cx="22" cy="22" r="18" class="ring_fg"/></svg>
+                  <svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" class="ring_bg"/><circle cx="22" cy="22" r="18" class="ring_fg"/></svg>
+                </div>
+              </div>
+              <div class="services_copy">
+                <h3 class="heading-style-h2">Speed, accessibility and launch checks</h3>
+                <p class="services_meme" data-meme-only>Four green circles. The only dopamine I need.</p>
+                <p>PageSpeed work, skip links, focus states, contrast ratios, schema, meta and a pre-launch sweep across every width from 390 to ultrawide.</p>
+              </div>
+            </article>
+          </div>
+          <div class="services_controls">
+            <button type="button" class="slider_button" data-services-prev aria-label="Previous service"><img src="images/icons/ui/icon-chevron-left-white.svg" alt="" width="24" height="24"></button>
+            <div class="services_pagination" data-services-pagination></div>
+            <button type="button" class="slider_button" data-services-next aria-label="Next service"><img src="images/icons/ui/icon-chevron-right-white.svg" alt="" width="24" height="24"></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SELECTED WORK: pinned horizontal flight past floating screens ============ -->
+      <section id="work" class="section_work" data-section="mango" data-shape="helix">
+        <div class="work_pin" data-work-pin>
+          <div class="work_track" data-work-track>
+
+            <div class="work_intro-panel">
+              <h2 class="heading-style-display" data-split-heading data-meme-swap="Things that actually shipped. To orbit.">Selected work.</h2>
+              <p class="text-size-large work_intro">Most of this was built as part of an agency team, and it's credited that way. The hands on the keyboard were mine.</p>
+              <p class="work_hint" aria-hidden="true" data-meme-swap="The screens scroll themselves. Magic. (It's GSAP.)">Hover a screen to scroll the whole live page. On touch it scrolls by itself.</p>
+            </div>
+
+            <article class="work_item is-mango" data-work-card>
+              <p class="work_ghost" aria-hidden="true">Great Southern Homes</p>
+              <div class="work_media">
+                <a href="https://www.greatsouthernhomes.com.au/" class="shot_component" data-shot target="_blank" rel="noopener" aria-label="Open the Great Southern Homes live site in a new tab">
+                  <span class="shot_bar" aria-hidden="true"><i></i><i></i><i></i><span class="shot_url">greatsouthernhomes.com.au</span></span>
+                  <span class="shot_viewport"><img src="images/sites/great-southern-homes-fullpage-900.webp" width="900" height="10557" alt="Full-page screenshot of the Great Southern Homes website" class="shot_image" data-shot-image loading="lazy"></span>
+                  <span class="shot_hint" aria-hidden="true">Hover to scroll</span>
+                </a>
+                <div class="work_chip" aria-hidden="true">
+                  <div class="viz-gauge" data-gauges>
+                    <div class="viz-gauge_item"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" class="ring_bg"/><circle cx="60" cy="60" r="50" class="ring_fg" data-gauge="0.96"/></svg><span class="viz-gauge_value">91 to 96</span><span class="viz-gauge_label">Mobile</span></div>
+                    <div class="viz-gauge_item"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" class="ring_bg"/><circle cx="60" cy="60" r="50" class="ring_fg" data-gauge="1"/></svg><span class="viz-gauge_value">99 to 100</span><span class="viz-gauge_label">Desktop</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="work_body">
+                <h3 class="heading-style-h2">Great Southern Homes</h3>
+                <p class="work_meta">Builder website, Australia. With Atelic Digital.</p>
+                <p class="work_meme" data-meme-only>PageSpeed so green it needs sunscreen.</p>
+                <p>A Webflow build worked mostly from screenshots, since the Figma was scarce. Card-stack sliders with a custom scrollbar, a scroll-scrubbed hero, a component navbar with animated dropdowns, service pages and case study templates. I tuned it until PageSpeed read 91 to 96 on mobile and 99 to 100 on desktop.</p>
+                <ul class="tag_list"><li class="tag">Webflow</li><li class="tag">IX3</li><li class="tag">Swiper</li><li class="tag">Performance</li></ul>
+                <p class="work_credit">Built by Eugene with Atelic Digital. Client and design ownership stay with them.</p>
+              </div>
+            </article>
+
+            <article class="work_item is-blue is-flip" data-work-card>
+              <p class="work_ghost" aria-hidden="true">Omble and ATOmate</p>
+              <div class="work_media is-pair">
+                <a href="https://omble-dev.webflow.io/" class="shot_component is-small" data-shot target="_blank" rel="noopener" aria-label="Open the Omble staging site in a new tab">
+                  <span class="shot_bar" aria-hidden="true"><i></i><i></i><i></i><span class="shot_url">omble-dev.webflow.io</span></span>
+                  <span class="shot_viewport"><img src="images/sites/omble-fullpage-900.webp" width="900" height="6353" alt="Full-page screenshot of the Omble Webflow build on staging" class="shot_image" data-shot-image loading="lazy"></span>
+                  
+                </a>
+                <a href="https://atomate-dev.webflow.io/" class="shot_component is-small" data-shot target="_blank" rel="noopener" aria-label="Open the ATOmate staging site in a new tab">
+                  <span class="shot_bar" aria-hidden="true"><i></i><i></i><i></i><span class="shot_url">atomate-dev.webflow.io</span></span>
+                  <span class="shot_viewport"><img src="images/sites/atomate-fullpage-900.webp" width="900" height="8541" alt="Full-page screenshot of the ATOmate Webflow build on staging" class="shot_image" data-shot-image loading="lazy"></span>
+                  
+                </a>
+                <div class="work_chip" aria-hidden="true">
+                  <div class="viz-rounds" data-rounds>
+                    <div class="viz-rounds_row"><span class="badge">E</span><span class="viz-rounds_line"></span><span class="viz-rounds_check"></span></div>
+                    <div class="viz-rounds_row"><span class="badge">E</span><span class="viz-rounds_line is-mid"></span><span class="viz-rounds_check"></span></div>
+                    <div class="viz-rounds_row"><span class="badge">E</span><span class="viz-rounds_line is-short"></span><span class="viz-rounds_check"></span></div>
+                    <div class="viz-rounds_row"><span class="badge">E</span><span class="viz-rounds_line"></span><span class="viz-rounds_check"></span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="work_body">
+                <h3 class="heading-style-h2">Omble and ATOmate</h3>
+                <p class="work_meta">Two product sites for one Australian client. With Double Shot Growth.</p>
+                <p class="work_meme" data-meme-only>Feedback rounds survived: all of them. Sanity: mostly.</p>
+                <p>Each page started as a static preview on Vercel so the client could review real code, then moved into Webflow on Client-First. Feedback came in rounds of PDFs and screenshots; every item was checked against the live page and logged. Interface graphics are built in HTML and CSS, so they animate and stay sharp. Omble also got an Insights blog on the CMS with case study linking.</p>
+                <ul class="tag_list"><li class="tag">Webflow</li><li class="tag">Vercel previews</li><li class="tag">CMS</li><li class="tag">Components</li></ul>
+                <p class="work_credit">Built by Eugene with Double Shot Growth. Client and design ownership stay with them.</p>
+              </div>
+            </article>
+
+            <article class="work_item is-violet" data-work-card>
+              <p class="work_ghost" aria-hidden="true">Beyond the Classroom</p>
+              <div class="work_media">
+                <a href="https://beyond-the-classroom-dev.webflow.io/" class="shot_component" data-shot target="_blank" rel="noopener" aria-label="Open the Beyond the Classroom staging site in a new tab">
+                  <span class="shot_bar" aria-hidden="true"><i></i><i></i><i></i><span class="shot_url">beyond-the-classroom-dev.webflow.io</span></span>
+                  <span class="shot_viewport"><img src="images/sites/beyond-the-classroom-fullpage-900.webp" width="900" height="7765" alt="Full-page screenshot of the Beyond the Classroom Webflow build on staging" class="shot_image" data-shot-image loading="lazy"></span>
+                  <span class="shot_hint" aria-hidden="true">Hover to scroll</span>
+                </a>
+              </div>
+              <div class="work_body">
+                <h3 class="heading-style-h2">Beyond the Classroom</h3>
+                <p class="work_meta">Education collective. With Rivyl.</p>
+                <p class="work_meme" data-meme-only>Parallax with more layers than an onion's feelings.</p>
+                <p>A hi-fi Figma converted to Webflow: a hero with layered parallax, location tabs, testimonials and FAQ components that switch between static and CMS content, an Insights page with Finsweet filters, and brand colours driven by CMS categories.</p>
+                <ul class="tag_list"><li class="tag">Webflow</li><li class="tag">CMS</li><li class="tag">Finsweet</li><li class="tag">IX3</li></ul>
+                <p class="work_credit">Built by Eugene with Rivyl. Client and design ownership stay with them.</p>
+              </div>
+            </article>
+
+            <article class="work_item is-pink is-flip" data-work-card>
+              <p class="work_ghost" aria-hidden="true">Ember Property</p>
+              <div class="work_media">
+                <a href="https://emberproperty.com.au/" class="shot_component" data-shot target="_blank" rel="noopener" aria-label="Open the Ember Property live site in a new tab">
+                  <span class="shot_bar" aria-hidden="true"><i></i><i></i><i></i><span class="shot_url">emberproperty.com.au</span></span>
+                  <span class="shot_viewport"><img src="images/sites/ember-property-fullpage-900.webp" width="900" height="6809" alt="Full-page screenshot of the Ember Property website" class="shot_image" data-shot-image loading="lazy"></span>
+                  <span class="shot_hint" aria-hidden="true">Hover to scroll</span>
+                </a>
+                <div class="work_chip" aria-hidden="true">
+                  <div class="viz-listings" data-listings>
+                    <div class="viz-listings_grid" data-listings-grid></div>
+                    <div class="viz-listings_count"><span data-listings-count>56</span><small>published listings</small></div>
+                  </div>
+                </div>
+              </div>
+              <div class="work_body">
+                <h3 class="heading-style-h2">Ember Property</h3>
+                <p class="work_meta">Real estate website, WordPress. With Atelic Digital.</p>
+                <p class="work_meme" data-meme-only>56 listings walked into a bar. 21 walked out. The correct number.</p>
+                <p>Sold listings never left the site. I traced it to the property sync plugin replaying every XML feed each hour and overwriting the sold date. After a backup, I fixed it on the live site: the published listings dropped from 56 to the correct 21, and they stayed correct after the next sync.</p>
+                <ul class="tag_list"><li class="tag">WordPress</li><li class="tag">PHP</li><li class="tag">Debugging</li></ul>
+                <p class="work_credit">Built by Eugene with Atelic Digital. Client and design ownership stay with them.</p>
+              </div>
+            </article>
+
+            <article class="work_item is-green" data-work-card>
+              <p class="work_ghost" aria-hidden="true">Dain Book</p>
+              <div class="work_media">
+                <div class="work_orb" aria-hidden="true">
+                  <div class="viz-browser">
+                    <div class="viz-browser_bar"><i></i><i></i><i></i><span class="viz-browser_url"><span class="viz-browser_domain"></span><span data-type-url data-text="/dain-book"></span><span class="viz-browser_caret"></span></span></div>
+                    <div class="viz-browser_body">
+                      <img src="images/icons/tech/icon-astro-white.svg" alt="" width="40" height="40" class="viz-browser_icon is-a">
+                      <img src="images/icons/tech/icon-webflow-white.svg" alt="" width="40" height="40" class="viz-browser_icon is-b">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="work_body">
+                <h3 class="heading-style-h2">Dain Book</h3>
+                <p class="work_meta">Campaign landing page. With Rivyl.</p>
+                <p class="work_meme" data-meme-only>A landing page that actually landed.</p>
+                <p>An Astro app on Webflow Cloud, mounted under the agency's own domain, built from a Figma frame.</p>
+                <ul class="tag_list"><li class="tag">Astro</li><li class="tag">Webflow Cloud</li></ul>
+                <p class="work_credit">Built by Eugene with Rivyl. Client and design ownership stay with them.</p>
+              </div>
+            </article>
+
+            <article class="work_item is-also" data-work-card>
+              <p class="work_ghost" aria-hidden="true">Also</p>
+              <div class="work_media is-trio">
+                <a href="https://calltek-dev.webflow.io/" class="shot_component is-small" data-shot target="_blank" rel="noopener" aria-label="Open the Calltek staging site in a new tab">
+                  <span class="shot_bar" aria-hidden="true"><i></i><i></i><i></i><span class="shot_url">calltek-dev.webflow.io</span></span>
+                  <span class="shot_viewport"><img src="images/sites/calltek-fullpage-900.webp" width="900" height="6205" alt="Full-page screenshot of the Calltek Webflow build on staging" class="shot_image" data-shot-image loading="lazy"></span>
+                  
+                </a>
+                <a href="https://coughlanhomes.co.nz/" class="shot_component is-small" data-shot target="_blank" rel="noopener" aria-label="Open the Coughlan Homes live site in a new tab">
+                  <span class="shot_bar" aria-hidden="true"><i></i><i></i><i></i><span class="shot_url">coughlanhomes.co.nz</span></span>
+                  <span class="shot_viewport"><img src="images/sites/coughlan-homes-fullpage-900.webp" width="900" height="12000" alt="Full-page screenshot of the Coughlan Homes website" class="shot_image" data-shot-image loading="lazy"></span>
+                </a>
+                <a href="https://www.allterrainindustries.com.au/" class="shot_component is-small" data-shot target="_blank" rel="noopener" aria-label="Open the ATI live site in a new tab">
+                  <span class="shot_bar" aria-hidden="true"><i></i><i></i><i></i><span class="shot_url">allterrainindustries.com.au</span></span>
+                  <span class="shot_viewport"><img src="images/sites/ati-fullpage-900.webp" width="900" height="4696" alt="Full-page screenshot of the ATI website" class="shot_image" data-shot-image loading="lazy"></span>
+                </a>
+              </div>
+              <div class="work_body">
+                <h3 class="heading-style-h2">Also</h3>
+                <p class="work_meme" data-meme-only>The B-sides. Still bangers.</p>
+                <ul class="also_list">
+                  <li><strong>Calltek</strong> (Double Shot Growth): Webflow build for a US client, worked directly in the Designer.</li>
+                  <li><strong>Rob Kropp</strong> (Rivyl): a trades coach's site, rebuilt 1:1 from Figma on a fresh token system.</li>
+                  <li><strong>ATI</strong> (Rivyl): ongoing work on a Maropost Commerce Cloud store, staging first, every change committed.</li>
+                  <li><strong>A WooCommerce store</strong> (Atelic Digital): clean-up and security review after a hack left 19,278 spam posts behind.</li>
+                  <li><strong>Coughlan Homes</strong> (Atelic Digital): spam protection on the contact form and a sideways-scroll fix on a live Elementor site.</li>
+                </ul>
+                <p class="placeholder">[PLACEHOLDER: one screenshot or short video per featured case]</p>
+              </div>
+            </article>
+          </div>
+          <div class="work_progress" aria-hidden="true">
+            <svg class="work_rocket" viewBox="0 0 40 20" data-work-rocket><path d="M2 10 L10 4 H28 C34 4 38 8 38 10 C38 12 34 16 28 16 H10Z" class="rocket_body"/><circle cx="28" cy="10" r="3" class="rocket_window"/><path d="M2 10 L-8 6 L-6 10 L-8 14Z" class="rocket_flame"/></svg>
+            <div class="work_progress-track"><div class="work_progress-bar" data-work-progress></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ HOW I WORK: rules orbiting on a 3D ring ============ -->
+      <section id="how" class="section_how" data-section="violet" data-shape="cube">
+        <div class="how_pin" data-how-pin>
+          <h2 class="heading-style-display how_heading" data-split-heading data-meme-swap="The rules. Yes, there are rules.">How I work.</h2>
+          <div class="how_stage" data-how-stage>
+            <div class="how_orbit" aria-hidden="true"></div>
+            <ol class="how_ring" data-how-ring>
+              <li class="how_rule" data-how-card>
+                <h3 class="heading-style-h3">Your words are law.</h3>
+                <p>I build copy exactly as you send it, typos included. I flag them; I don't fix them. If content is missing you'll see a labelled placeholder, never a sentence I made up.</p>
+                <p class="how_meme" data-meme-only>This site's meme mode is the one exception. I asked myself. I said yes.</p>
+              </li>
+              <li class="how_rule" data-how-card>
+                <h3 class="heading-style-h3">Nothing goes live without your yes.</h3>
+                <p>I check on localhost or staging first. Publishing happens on your word, one yes per publish, and afterwards I open the live URL to confirm it's really there.</p>
+                <p class="how_meme" data-meme-only>"Just push it" is not a yes. Nice try.</p>
+              </li>
+              <li class="how_rule" data-how-card>
+                <h3 class="heading-style-h3">I check the real thing.</h3>
+                <p>Not a search through the code, not my memory of it. I open the rendered page and measure it at 1440, 1100, 992, 768 and 390, plus ultrawide before sign-off.</p>
+                <p class="how_meme" data-meme-only>Trust me bro is not a testing strategy.</p>
+              </li>
+              <li class="how_rule" data-how-card>
+                <h3 class="heading-style-h3">Everything is written down.</h3>
+                <p>Each change goes into the project log with the date and who asked for it. You can always see why something is the way it is.</p>
+                <p class="how_meme" data-meme-only>Future me sends his thanks.</p>
+              </li>
+              <li class="how_rule" data-how-card>
+                <h3 class="heading-style-h3">Easy to undo.</h3>
+                <p>Clients change their minds, and that's fine. I build asks as small overrides that one setting can reverse, and I hide or move things instead of deleting them.</p>
+                <p class="how_meme" data-meme-only>Ctrl+Z is a lifestyle.</p>
+              </li>
+              <li class="how_rule" data-how-card>
+                <h3 class="heading-style-h3">I stay inside the ask.</h3>
+                <p>If something next to the task looks wrong, I tell you in one line. I don't quietly redesign it.</p>
+                <p class="how_meme" data-meme-only>Scope creep stays in its lane.</p>
+              </li>
+            </ol>
+          </div>
+          <div class="drake_component" data-meme-only aria-label="Meme: no to checking with grep, yes to checking in the real browser" role="img">
+            <div class="drake_row is-no"><span class="drake_hand"><svg viewBox="0 0 24 24"><path d="M7 14V4M7 14H4V4h3M7 14l4 6c1.5 0 2-1 2-2v-4h5a2 2 0 0 0 2-2.3l-1-6A2 2 0 0 0 17 4H7"/></svg></span><span class="drake_text">Checking it with grep</span></div>
+            <div class="drake_row is-yes"><span class="drake_hand"><svg viewBox="0 0 24 24"><path d="M7 10v10M7 10H4v10h3M7 10l4-6c1.5 0 2 1 2 2v4h5a2 2 0 0 1 2 2.3l-1 6A2 2 0 0 1 17 20H7"/></svg></span><span class="drake_text">Opening the real browser at 390px</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ TOOLKIT: the whole section is a zero-gravity arena ============ -->
+      <section id="toolkit" class="section_toolkit" data-section="mango" data-shape="scatter">
+        <div class="toolkit_head">
+          <h2 class="heading-style-display" data-split-heading data-meme-swap="My emotional support tools.">What I build with.</h2>
+          <p class="toolkit_hint" data-meme-swap="Zero gravity. Fling the tools. HR said it's fine.">Grab one and throw it.</p>
+          <div class="toolkit_legend" aria-hidden="true">
+            <span class="toolkit_key is-daily">Every day</span>
+            <span class="toolkit_key is-often">Often</span>
+            <span class="toolkit_key is-needed">When the job needs it</span>
+            <span class="toolkit_key is-learning">Learning now</span>
+          </div>
+        </div>
+        <div class="toolkit_arena" data-toolkit-box>
+          <div class="toolkit_group">
+            <h3 class="toolkit_title">Every day</h3>
+            <ul class="toolkit_list">
+              <li class="toolkit_pill is-daily" data-pill><img src="images/icons/tech/icon-webflow-dark.svg" alt="" width="20" height="20">Webflow</li>
+              <li class="toolkit_pill is-daily" data-pill>Finsweet Client-First</li>
+              <li class="toolkit_pill is-daily" data-pill>Webflow Interactions (IX3)</li>
+              <li class="toolkit_pill is-daily" data-pill><img src="images/icons/tech/icon-figma-dark.svg" alt="" width="20" height="20">Figma</li>
+              <li class="toolkit_pill is-daily" data-pill><img src="images/icons/tech/icon-html5-dark.svg" alt="" width="20" height="20">HTML</li>
+              <li class="toolkit_pill is-daily" data-pill><img src="images/icons/tech/icon-css-dark.svg" alt="" width="20" height="20">CSS</li>
+              <li class="toolkit_pill is-daily" data-pill><img src="images/icons/tech/icon-javascript-dark.svg" alt="" width="20" height="20">JavaScript</li>
+            </ul>
+          </div>
+          <div class="toolkit_group">
+            <h3 class="toolkit_title">Often</h3>
+            <ul class="toolkit_list">
+              <li class="toolkit_pill is-often" data-pill><img src="images/icons/tech/icon-gsap-dark.svg" alt="" width="20" height="20">GSAP</li>
+              <li class="toolkit_pill is-often" data-pill><img src="images/icons/tech/icon-swiper-dark.svg" alt="" width="20" height="20">Swiper</li>
+              <li class="toolkit_pill is-often" data-pill>Webflow CMS</li>
+              <li class="toolkit_pill is-often" data-pill>Finsweet Attributes</li>
+              <li class="toolkit_pill is-often" data-pill><img src="images/icons/tech/icon-github-dark.svg" alt="" width="20" height="20">GitHub</li>
+              <li class="toolkit_pill is-often" data-pill><img src="images/icons/tech/icon-vercel-dark.svg" alt="" width="20" height="20">Vercel</li>
+            </ul>
+          </div>
+          <div class="toolkit_group">
+            <h3 class="toolkit_title">When the job needs it</h3>
+            <ul class="toolkit_list">
+              <li class="toolkit_pill is-needed" data-pill><img src="images/icons/tech/icon-elementor-dark.svg" alt="" width="20" height="20">WordPress and Elementor Pro</li>
+              <li class="toolkit_pill is-needed" data-pill><img src="images/icons/tech/icon-woocommerce-dark.svg" alt="" width="20" height="20">WooCommerce</li>
+              <li class="toolkit_pill is-needed" data-pill>Maropost Commerce Cloud</li>
+              <li class="toolkit_pill is-needed" data-pill><img src="images/icons/tech/icon-astro-dark.svg" alt="" width="20" height="20">Astro</li>
+              <li class="toolkit_pill is-needed" data-pill>Webflow Cloud</li>
+              <li class="toolkit_pill is-needed" data-pill><img src="images/icons/tech/icon-nextdotjs-dark.svg" alt="" width="20" height="20">Next.js</li>
+            </ul>
+          </div>
+          <div class="toolkit_group">
+            <h3 class="toolkit_title">Learning now</h3>
+            <ul class="toolkit_list">
+              <li class="toolkit_pill is-learning" data-pill><img src="images/icons/tech/icon-go-dark.svg" alt="" width="20" height="20">Go</li>
+              <li class="toolkit_pill is-learning" data-pill><img src="images/icons/tech/icon-php-dark.svg" alt="" width="20" height="20">PHP</li>
+              <li class="toolkit_pill is-learning" data-pill><img src="images/icons/tech/icon-godotengine-dark.svg" alt="" width="20" height="20">Godot</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ THE SYSTEM BEHIND IT ============ -->
+      <section class="section_system" data-section="blue" data-shape="planet">
+        <div class="system_component">
+          <h2 class="heading-style-display system_heading" data-split-heading data-meme-swap="Yes, I use AI. No, it doesn't get the keys.">I use AI the boring, careful way.</h2>
+          <div class="system_copy">
+            <p class="text-size-large" data-reveal>I work with Claude Code as a second pair of hands. It doesn't decide anything. It follows a rule book I wrote and keep up to date: my standards, each client's preferences, and the mistakes that became rules. That's why the output reads like me and not like a template.</p>
+            <p data-reveal>What that system includes:</p>
+            <ul class="system_list">
+              <li data-reveal>A Webflow starter kit with my own variable system, breakpoints, utilities and motion presets, tested on a guinea pig site before any client sees it.</li>
+              <li data-reveal>Written standards for builds, QA and accessibility, refined across every project.</li>
+              <li data-reveal>Checklists that catch the things AI tools get wrong: invented copy, generic layouts, motion that never finishes.</li>
+            </ul>
+          </div>
+          <div class="system_diagram" data-diagram aria-hidden="true">
+            <svg class="system_wires" data-wires></svg>
+            <div class="system_inputs">
+              <span class="system_node" data-node-in>My standards</span>
+              <span class="system_node" data-node-in>Each client's preferences</span>
+              <span class="system_node" data-node-in>The mistakes that became rules</span>
+            </div>
+            <div class="system_core" data-node-core><img src="images/icons/tech/icon-claude-white.svg" alt="" width="40" height="40"><span>Claude Code</span></div>
+            <span class="system_node is-out" data-node-out>Output that reads like me</span>
+          </div>
+        </div>
+        <div class="brain_component" data-meme-only role="img" aria-label="Expanding brain meme about AI">
+          <div class="brain_row" data-brain><span class="brain_text">Write the code</span><svg class="brain_icon" viewBox="0 0 64 48"><path d="M20 40c-8 0-14-6-14-13 0-5 3-9 7-11 1-6 6-10 12-10 4 0 7 1 9 4 2-2 5-3 8-3 7 0 12 5 12 12 3 2 4 5 4 8 0 7-6 13-14 13Z"/></svg></div>
+          <div class="brain_row" data-brain><span class="brain_text">Let AI write the code</span><svg class="brain_icon" viewBox="0 0 64 48"><path d="M20 40c-8 0-14-6-14-13 0-5 3-9 7-11 1-6 6-10 12-10 4 0 7 1 9 4 2-2 5-3 8-3 7 0 12 5 12 12 3 2 4 5 4 8 0 7-6 13-14 13Z"/></svg></div>
+          <div class="brain_row" data-brain><span class="brain_text">Let AI follow a rule book you wrote</span><svg class="brain_icon" viewBox="0 0 64 48"><path d="M20 40c-8 0-14-6-14-13 0-5 3-9 7-11 1-6 6-10 12-10 4 0 7 1 9 4 2-2 5-3 8-3 7 0 12 5 12 12 3 2 4 5 4 8 0 7-6 13-14 13Z"/></svg></div>
+          <div class="brain_row" data-brain><span class="brain_text">Turn every mistake into a new rule</span><svg class="brain_icon" viewBox="0 0 64 48"><path d="M20 40c-8 0-14-6-14-13 0-5 3-9 7-11 1-6 6-10 12-10 4 0 7 1 9 4 2-2 5-3 8-3 7 0 12 5 12 12 3 2 4 5 4 8 0 7-6 13-14 13Z"/></svg></div>
+        </div>
+      </section>
+
+      <!-- ============ OFF THE CLOCK ============ -->
+      <section class="section_off" data-section="pink" data-shape="torus">
+        <h2 class="heading-style-display off_heading" data-split-heading data-meme-swap="Touching grass. And asteroids.">Off the clock.</h2>
+        <div class="off_component">
+          <div class="off_items">
+            <div class="off_item" data-reveal>
+              <h3 class="heading-style-h3">Malaki Ethics Co.</h3>
+              <p>A three-person Webflow and Shopify studio I run with Pat and Paul. Straight numbers, honest timelines, no dark patterns.</p>
+            </div>
+            <div class="off_item is-offset" data-reveal>
+              <h3 class="heading-style-h3">Games.</h3>
+              <p>I'm learning Godot and making small games. Level design and building environments are the parts I love most.</p>
+              <div class="game_component" data-game>
+                <canvas class="game_canvas" data-game-canvas width="640" height="260" aria-label="Mini game: steer the rocket away from asteroids" role="img"></canvas>
+                <div class="game_hud"><span>Score <b data-game-score>0</b></span><span>Best <b data-game-best>0</b></span></div>
+                <button type="button" class="game_start" data-game-start><span data-meme-swap="Play. Dodge bugs. Ship.">Play</span></button>
+              </div>
+              <p class="game_hint">Move your mouse or finger, or use the arrow keys.</p>
+            </div>
+            <div class="off_item" data-reveal>
+              <h3 class="heading-style-h3">Quinta Café.</h3>
+              <p class="placeholder">[PLACEHOLDER: one line, only if you want the café and its POS app on here]</p>
+            </div>
+          </div>
+          <div class="off_gallery">
+            <div class="photos_slider swiper" data-photos-swiper>
+              <div class="swiper-wrapper">
+                <figure class="swiper-slide photo_card"><img src="images/photos/mount-samat-sunset-1200.webp" width="1200" height="799" alt="Mount Samat cross at sunset, Bataan" loading="lazy"><figcaption>Mount Samat, Bataan</figcaption></figure>
+                <figure class="swiper-slide photo_card"><img src="images/photos/corolla-gli-white-1993-1200.webp" width="1200" height="901" alt="White 1993 Toyota Corolla GLi, the Big Body" loading="lazy"><figcaption>Corolla Big Body, GLi 1993</figcaption></figure>
+                <figure class="swiper-slide photo_card"><img src="images/photos/balanga-cathedral-1200.webp" width="1200" height="904" alt="Balanga Cathedral, Bataan" loading="lazy"><figcaption>Balanga Cathedral</figcaption></figure>
+                <figure class="swiper-slide photo_card"><img src="images/photos/corolla-ae101-white-csi-1200.webp" width="1200" height="803" alt="White Toyota Corolla AE101 sedan" loading="lazy"><figcaption>Corolla AE101</figcaption></figure>
+                <figure class="swiper-slide photo_card"><img src="images/photos/balanga-plaza-mayor-1200.webp" width="1200" height="619" alt="Plaza Mayor de Balanga" loading="lazy"><figcaption>Plaza Mayor de Balanga</figcaption></figure>
+                <figure class="swiper-slide photo_card"><img src="images/photos/mount-samat-fields-1200.webp" width="1200" height="675" alt="Mount Samat seen from the fields" loading="lazy"><figcaption>Mount Samat from the fields</figcaption></figure>
+              </div>
+            </div>
+            <p class="off_gallery-hint" data-meme-swap="Swipe the deck. Every card is a flex.">Swipe the deck.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FAQ ============ -->
+      <section class="section_faq" data-section="violet" data-shape="helix">
+        <h2 class="heading-style-display faq_heading" data-split-heading data-meme-swap="Questions you were too polite to ask.">Good to know.</h2>
+        <div class="faq_list">
+          <details class="faq_item" data-reveal>
+            <summary class="faq_question"><span>Where are you, and when are you online?</span><span class="faq_icon" aria-hidden="true"></span></summary>
+            <div class="faq_answer"><p>The Philippines. My working day overlaps most of the Australian business day.</p><p class="placeholder">[PLACEHOLDER: confirm hours, plus US overlap if you take US work directly]</p></div>
+          </details>
+          <details class="faq_item" data-reveal>
+            <summary class="faq_question"><span>Do you work with agencies?</span><span class="faq_icon" aria-hidden="true"></span></summary>
+            <div class="faq_answer"><p>Yes, most of my work is with agencies. I work in your Webflow workspace, your Figma and your ticket board, and I can work white-label.</p></div>
+          </details>
+          <details class="faq_item" data-reveal>
+            <summary class="faq_question"><span>What do you need from me to start?</span><span class="faq_icon" aria-hidden="true"></span></summary>
+            <div class="faq_answer"><p>The design file or references, the copy, brand fonts with their web licence, and who signs off.</p></div>
+          </details>
+          <details class="faq_item" data-reveal>
+            <summary class="faq_question"><span>Can you work from screenshots instead of Figma?</span><span class="faq_icon" aria-hidden="true"></span></summary>
+            <div class="faq_answer"><p>Yes. Great Southern Homes was mostly built that way.</p></div>
+          </details>
+          <details class="faq_item is-meme" data-meme-only data-reveal>
+            <summary class="faq_question"><span>Can you make the logo bigger?</span><span class="faq_icon" aria-hidden="true"></span></summary>
+            <div class="faq_answer"><p>Click the logo in the top left. Keep clicking. I'll wait.</p></div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ============ CONTACT: hold to publish, the rocket launches ============ -->
+      <section id="contact" class="section_contact" data-section="mango" data-shape="text">
+        <h2 class="heading-style-display contact_heading" data-split-heading data-meme-swap="Got a build that needs doing properly? Or improperly. I'll fix it.">Got a build that needs doing properly?</h2>
+        <div class="contact_component">
+          <div class="contact_content">
+            <p class="text-size-large">Send me the brief, the Figma link or just a few screenshots. I'll tell you what it needs, what it doesn't, and what it'll take, in writing.</p>
+            <div class="contact_buttons"><span class="button is-primary is-placeholder">[PLACEHOLDER: email address]</span></div>
+            <ul class="contact_links">
+              <li><span class="placeholder">[PLACEHOLDER: LinkedIn]</span></li>
+              <li><a href="https://github.com/kilvs" class="contact_link" data-magnetic><img src="images/icons/tech/icon-github-white.svg" alt="" width="20" height="20">GitHub (kilvs)</a></li>
+              <li><span class="contact_link is-static">Malaki Ethics Co</span></li>
+            </ul>
+          </div>
+          <div class="launch_component" data-launch>
+            <svg class="launch_svg" viewBox="0 0 240 360" aria-hidden="true">
+              <g class="launch_smoke" data-smoke></g>
+              <g class="launch_rocket" data-rocket>
+                <path d="M120 40 C 150 70 160 120 156 190 L 84 190 C 80 120 90 70 120 40 Z" class="rocket_hull"/>
+                <path d="M120 40 C 134 54 142 70 146 90 L 94 90 C 98 70 106 54 120 40 Z" class="rocket_nose"/>
+                <circle cx="120" cy="128" r="16" class="rocket_porthole"/>
+                <circle cx="120" cy="128" r="9" class="rocket_glass"/>
+                <path d="M84 160 L 58 206 L 86 196 Z" class="rocket_fin"/>
+                <path d="M156 160 L 182 206 L 154 196 Z" class="rocket_fin"/>
+                <path d="M104 190 L 136 190 L 130 204 L 110 204 Z" class="rocket_nozzle"/>
+                <path d="M108 204 C 108 240 120 262 120 262 C 120 262 132 240 132 204 Z" class="rocket_fire" data-fire/>
+              </g>
+              <path d="M40 300 H200" class="launch_pad"/>
+              <path d="M70 300 V 230 M170 300 V 230 M70 250 H100 M170 250 H140" class="launch_tower"/>
+            </svg>
+            <button type="button" class="launch_button" data-launch-button>
+              <svg class="launch_progress" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" class="ring_bg"/><circle cx="60" cy="60" r="54" class="ring_fg" data-launch-ring/></svg>
+              <span class="launch_label">Publish</span>
+            </button>
+            <p class="launch_hint" data-launch-hint>Press and hold. One yes per publish.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer_component">
+      <p class="footer_wordmark" data-wordmark aria-hidden="true">Eugene Quilban</p>
+      <div class="footer_bottom">
+        <p data-meme-swap="No em dashes were harmed in the making of this website.">Built with GSAP, Three.js, Lenis and Swiper.</p>
+        <details class="footer_credits">
+          <summary>Photo credits</summary>
+          <ul>
+            <li>Mount Samat at sunset: <a href="https://commons.wikimedia.org/wiki/File:Sunset_photo_of_Mt._Samat_Cross.jpg">EdseastresD600</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></li>
+            <li>Corolla GLi 1993: <a href="https://commons.wikimedia.org/wiki/File:Toyota_Corolla_1.6_GLi_1993.jpg">Ethan Llamas</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></li>
+            <li>Balanga Cathedral: <a href="https://commons.wikimedia.org/wiki/File:Balanga_Cathedral,_Bataan,_Apr_2026.jpg">Ralff Nestor Nacor</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></li>
+            <li>Corolla AE101: <a href="https://commons.wikimedia.org/wiki/File:1995_Toyota_Corolla_(AE101R)_CSi_sedan_(2015-07-24)_01.jpg">OSX</a>, public domain</li>
+            <li>Plaza Mayor de Balanga: <a href="https://commons.wikimedia.org/wiki/File:Plaza_Mayor_de_Balanga.png">Makubex1985</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></li>
+            <li>Mount Samat from the fields: <a href="https://commons.wikimedia.org/wiki/File:Mount_Samat_remote_view.jpg">P199</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></li>
+            <li>Photos resized and converted to WebP. Portraits are my own. Site screenshots show work for clients and agencies, who own those designs.</li>
+          </ul>
+        </details>
+        <button type="button" class="footer_top" data-scroll-top data-meme-swap="Beam me up">Back to top</button>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/Draggable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/InertiaPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/MotionPathPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/DrawSVGPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrambleTextPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/TextPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@14.2.0/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.20.0/matter.min.js"></script>
+  <script src="js/landing.js?v=6"></script>
+  <script type="module" src="js/cosmos.js?v=2"></script>
+</body>
+</html>
