@@ -8,10 +8,11 @@
   <meta name="theme-color" content="#05061a">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/BricolageGrotesque-Variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&amp;display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@14.2.0/swiper-bundle.min.css">
-  <link rel="stylesheet" href="css/landing.css?v=9">
+  <link rel="stylesheet" href="css/landing.css?v=11">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -178,7 +179,7 @@
         <div class="about_component">
           <div class="about_visual" data-tilt>
             <div class="about_porthole">
-              <img src="images/photos/eugene-portrait-blue-900.webp" srcset="images/photos/eugene-portrait-blue-900.webp 900w, images/photos/eugene-portrait-blue-1672.webp 1672w" sizes="(max-width: 767px) 90vw, 45vw" width="900" height="507" alt="Eugene against a blue backdrop" class="about_photo" loading="lazy" data-parallax-inner>
+              <img src="images/photos/eugene-portrait-blue-900.webp" srcset="images/photos/eugene-portrait-blue-900.webp 900w, images/photos/eugene-portrait-blue-1672.webp 1672w" sizes="(max-width: 991px) min(18rem, 60vw), min(28vw, 30rem)" width="900" height="507" alt="Eugene against a blue backdrop" class="about_photo" loading="lazy" data-parallax-inner>
             </div>
             <svg class="about_constellation" viewBox="0 0 300 200" aria-hidden="true" data-constellation>
               <path d="M20 160 L80 120 L130 140 L190 70 L250 90 L280 30" class="constellation_line"/>
@@ -296,7 +297,7 @@
               <div class="work_media">
                 <a href="https://www.greatsouthernhomes.com.au/" class="shot_component" data-shot target="_blank" rel="noopener" aria-label="Open the Great Southern Homes live site in a new tab">
                   <span class="shot_bar" aria-hidden="true"><i></i><i></i><i></i><span class="shot_url">greatsouthernhomes.com.au</span></span>
-                  <span class="shot_viewport"><img src="images/sites/great-southern-homes-fullpage-900.webp" width="900" height="10557" alt="Full-page screenshot of the Great Southern Homes website" class="shot_image" data-shot-image loading="lazy"></span>
+                  <span class="shot_viewport"><picture><source media="(max-width: 991px)" srcset="images/sites/great-southern-homes-mobile-480.webp"><img src="images/sites/great-southern-homes-fullpage-900.webp" width="900" height="10557" alt="Full-page screenshot of the Great Southern Homes website" class="shot_image" data-shot-image loading="lazy" decoding="async"></picture></span>
                   <span class="shot_hint" aria-hidden="true">Hover to scroll</span>
                 </a>
                 <div class="work_chip" aria-hidden="true">
@@ -321,12 +322,12 @@
               <div class="work_media is-pair">
                 <a href="https://omble-dev.webflow.io/" class="shot_component is-small" data-shot target="_blank" rel="noopener" aria-label="Open the Omble staging site in a new tab">
                   <span class="shot_bar" aria-hidden="true"><i></i><i></i><i></i><span class="shot_url">omble-dev.webflow.io</span></span>
-                  <span class="shot_viewport"><img src="images/sites/omble-fullpage-900.webp" width="900" height="6353" alt="Full-page screenshot of the Omble Webflow build on staging" class="shot_image" data-shot-image loading="lazy"></span>
+                  <span class="shot_viewport"><picture><source media="(max-width: 991px)" srcset="images/sites/omble-mobile-480.webp"><img src="images/sites/omble-fullpage-900.webp" width="900" height="6353" alt="Full-page screenshot of the Omble Webflow build on staging" class="shot_image" data-shot-image loading="lazy" decoding="async"></picture></span>
                   
                 </a>
                 <a href="https://atomate-dev.webflow.io/" class="shot_component is-small" data-shot target="_blank" rel="noopener" aria-label="Open the ATOmate staging site in a new tab">
                   <span class="shot_bar" aria-hidden="true"><i></i><i></i><i></i><span class="shot_url">atomate-dev.webflow.io</span></span>
-                  <span class="shot_viewport"><img src="images/sites/atomate-fullpage-900.webp" width="900" height="8541" alt="Full-page screenshot of the ATOmate Webflow build on staging" class="shot_image" data-shot-image loading="lazy"></span>
+                  <span class="shot_viewport"><picture><source media="(max-width: 991px)" srcset="images/sites/atomate-mobile-480.webp"><img src="images/sites/atomate-fullpage-900.webp" width="900" height="8541" alt="Full-page screenshot of the ATOmate Webflow build on staging" class="shot_image" data-shot-image loading="lazy" decoding="async"></picture></span>
                   
                 </a>
                 <div class="work_chip" aria-hidden="true">
@@ -353,7 +354,7 @@
               <div class="work_media">
                 <a href="https://beyond-the-classroom-dev.webflow.io/" class="shot_component" data-shot target="_blank" rel="noopener" aria-label="Open the Beyond the Classroom staging site in a new tab">
                   <span class="shot_bar" aria-hidden="true"><i></i><i></i><i></i><span class="shot_url">beyond-the-classroom-dev.webflow.io</span></span>
-                  <span class="shot_viewport"><img src="images/sites/beyond-the-classroom-fullpage-900.webp" width="900" height="7765" alt="Full-page screenshot of the Beyond the Classroom Webflow build on staging" class="shot_image" data-shot-image loading="lazy"></span>
+                  <span class="shot_viewport"><picture><source media="(max-width: 991px)" srcset="images/sites/beyond-the-classroom-mobile-480.webp"><img src="images/sites/beyond-the-classroom-fullpage-900.webp" width="900" height="7765" alt="Full-page screenshot of the Beyond the Classroom Webflow build on staging" class="shot_image" data-shot-image loading="lazy" decoding="async"></picture></span>
                   <span class="shot_hint" aria-hidden="true">Hover to scroll</span>
                 </a>
               </div>
@@ -372,7 +373,7 @@
               <div class="work_media">
                 <a href="https://emberproperty.com.au/" class="shot_component" data-shot target="_blank" rel="noopener" aria-label="Open the Ember Property live site in a new tab">
                   <span class="shot_bar" aria-hidden="true"><i></i><i></i><i></i><span class="shot_url">emberproperty.com.au</span></span>
-                  <span class="shot_viewport"><img src="images/sites/ember-property-fullpage-900.webp" width="900" height="6809" alt="Full-page screenshot of the Ember Property website" class="shot_image" data-shot-image loading="lazy"></span>
+                  <span class="shot_viewport"><picture><source media="(max-width: 991px)" srcset="images/sites/ember-property-mobile-480.webp"><img src="images/sites/ember-property-fullpage-900.webp" width="900" height="6809" alt="Full-page screenshot of the Ember Property website" class="shot_image" data-shot-image loading="lazy" decoding="async"></picture></span>
                   <span class="shot_hint" aria-hidden="true">Hover to scroll</span>
                 </a>
                 <div class="work_chip" aria-hidden="true">
@@ -420,16 +421,16 @@
               <div class="work_media is-trio">
                 <a href="https://calltek-dev.webflow.io/" class="shot_component is-small" data-shot target="_blank" rel="noopener" aria-label="Open the Calltek staging site in a new tab">
                   <span class="shot_bar" aria-hidden="true"><i></i><i></i><i></i><span class="shot_url">calltek-dev.webflow.io</span></span>
-                  <span class="shot_viewport"><img src="images/sites/calltek-fullpage-900.webp" width="900" height="6205" alt="Full-page screenshot of the Calltek Webflow build on staging" class="shot_image" data-shot-image loading="lazy"></span>
+                  <span class="shot_viewport"><picture><source media="(max-width: 991px)" srcset="images/sites/calltek-mobile-480.webp"><img src="images/sites/calltek-fullpage-900.webp" width="900" height="6205" alt="Full-page screenshot of the Calltek Webflow build on staging" class="shot_image" data-shot-image loading="lazy" decoding="async"></picture></span>
                   
                 </a>
                 <a href="https://coughlanhomes.co.nz/" class="shot_component is-small" data-shot target="_blank" rel="noopener" aria-label="Open the Coughlan Homes live site in a new tab">
                   <span class="shot_bar" aria-hidden="true"><i></i><i></i><i></i><span class="shot_url">coughlanhomes.co.nz</span></span>
-                  <span class="shot_viewport"><img src="images/sites/coughlan-homes-fullpage-900.webp" width="900" height="12000" alt="Full-page screenshot of the Coughlan Homes website" class="shot_image" data-shot-image loading="lazy"></span>
+                  <span class="shot_viewport"><picture><source media="(max-width: 991px)" srcset="images/sites/coughlan-homes-mobile-480.webp"><img src="images/sites/coughlan-homes-fullpage-900.webp" width="900" height="12000" alt="Full-page screenshot of the Coughlan Homes website" class="shot_image" data-shot-image loading="lazy" decoding="async"></picture></span>
                 </a>
                 <a href="https://www.allterrainindustries.com.au/" class="shot_component is-small" data-shot target="_blank" rel="noopener" aria-label="Open the ATI live site in a new tab">
                   <span class="shot_bar" aria-hidden="true"><i></i><i></i><i></i><span class="shot_url">allterrainindustries.com.au</span></span>
-                  <span class="shot_viewport"><img src="images/sites/ati-fullpage-900.webp" width="900" height="4696" alt="Full-page screenshot of the ATI website" class="shot_image" data-shot-image loading="lazy"></span>
+                  <span class="shot_viewport"><picture><source media="(max-width: 991px)" srcset="images/sites/ati-mobile-480.webp"><img src="images/sites/ati-fullpage-900.webp" width="900" height="4696" alt="Full-page screenshot of the ATI website" class="shot_image" data-shot-image loading="lazy" decoding="async"></picture></span>
                 </a>
               </div>
               <div class="work_body">
@@ -728,7 +729,7 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@14.2.0/swiper-bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.20.0/matter.min.js"></script>
-  <script src="js/landing.js?v=7"></script>
-  <script type="module" src="js/cosmos.js?v=2"></script>
+  <script src="js/landing.js?v=9"></script>
+  <script type="module" src="js/cosmos.js?v=3"></script>
 </body>
 </html>

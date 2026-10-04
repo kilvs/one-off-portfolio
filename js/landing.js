@@ -19,6 +19,14 @@
   const state = { meme: true, warp: false, gravity: false, boost: 0, dy: 0 };
   const mm = gsap.matchMedia();
 
+  // Looping tweens only run while their area is on screen
+  function whileVisible(trigger, tweens) {
+    tweens = tweens.filter(Boolean);
+    if (!tweens.length || !trigger) return;
+    tweens.forEach((t) => t.pause());
+    ScrollTrigger.create({ trigger, start: "top bottom", end: "bottom top", onToggle: (s) => tweens.forEach((t) => (s.isActive ? t.resume() : t.pause())) });
+  }
+
   /* ---------------- Toasts (Sonner-style stack) ---------------- */
   const toastList = $("[data-toasts]");
   const toastSeen = new Set();
@@ -90,7 +98,7 @@
 
   /* ---------------- Lenis smooth scroll ---------------- */
   let lenis = null;
-  if (!reduce && typeof Lenis !== "undefined") {
+  if (!reduce && finePointer && typeof Lenis !== "undefined") {
     lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
     lenis.on("scroll", ScrollTrigger.update);
     gsap.ticker.add((t) => lenis.raf(t * 1000));
@@ -117,7 +125,7 @@
   gsap.ticker.add(() => {
     state.dy = window.scrollY - lastScrollY;
     lastScrollY = window.scrollY;
-    if (Math.abs(state.dy) > 150) memeToast("Whoa. This is a portfolio, not a speedrun.", "speed");
+    if (finePointer && Math.abs(state.dy) > 150) memeToast("Whoa. This is a portfolio, not a speedrun.", "speed");
   });
 
   /* ---------------- Starfield (3D warp, reacts to scroll and pointer) ---------------- */
@@ -234,6 +242,7 @@
   });
 
   /* ---------------- Burger + off-canvas warp portal ---------------- */
+  const EQ_pause = (v) => window.EQ?.pauseCosmos?.(v);
   function menu() {
     const burger = $("[data-burger]"), menuEl = $("[data-menu]"), portal = $("[data-menu-portal]");
     const label = $("[data-burger-label]");
@@ -271,6 +280,7 @@
       burger.setAttribute("aria-label", "Close menu");
       setLabel();
       loops.forEach((l) => l.play());
+      setTimeout(() => { if (isOpen) EQ_pause(true); }, 1100);
       Array.from(toastList.children).forEach(dismissToast);
       memeToast("Hyperdrive engaged. Mind the wormhole.", "menu");
       tl?.kill();
@@ -279,9 +289,9 @@
       const R = Math.hypot(Math.max(o.x, innerWidth - o.x), Math.max(o.y, innerHeight - o.y)) + 40;
       gsap.timeline()
         .to(icon, { rotation: 180, scale: 1.15, duration: 0.6, ease: "back.out(2.5)" }, 0)
-        .to(lines[0], { y: 6, rotation: 45, duration: 0.4, ease: "back.out(2)" }, 0.05)
+        .to(lines[0], { y: 7.5, rotation: 45, duration: 0.4, ease: "back.out(2)" }, 0.05)
         .to(lines[1], { scaleX: 0, autoAlpha: 0, duration: 0.25 }, 0)
-        .to(lines[2], { y: -6, rotation: -45, duration: 0.4, ease: "back.out(2)" }, 0.05)
+        .to(lines[2], { y: -7.5, rotation: -45, duration: 0.4, ease: "back.out(2)" }, 0.05)
         .fromTo(label, { yPercent: 100, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 0.4 }, 0.15);
       tl = gsap.timeline({ onComplete: () => links[0].focus({ preventScroll: true }) })
         .fromTo(portal, { clipPath: `circle(0px at ${o.x}px ${o.y}px)` }, { clipPath: `circle(${R}px at ${o.x}px ${o.y}px)`, duration: 1.05, ease: "expo.inOut" }, 0)
@@ -299,6 +309,7 @@
       burger.setAttribute("aria-expanded", "false");
       burger.setAttribute("aria-label", "Open menu");
       setLabel();
+      EQ_pause(false);
       const done = () => {
         menuEl.hidden = true;
         document.body.classList.remove("is-menu-open");
@@ -433,8 +444,13 @@
       const base = (perRing[ring]++ / counts[ring]) * Math.PI * 2;
       return { el, ring: rings[ring], base };
     });
-    let size = orbit.offsetWidth;
-    addEventListener("resize", () => { size = orbit.offsetWidth; });
+    let size = orbit.offsetWidth, sizeW = innerWidth;
+    addEventListener("resize", () => { if (innerWidth === sizeW) return; sizeW = innerWidth; size = orbit.offsetWidth; });
+    orbitItems.forEach((o) => {
+      o.sx = gsap.quickSetter(o.el, "x", "px"); o.sy = gsap.quickSetter(o.el, "y", "px");
+      o.ss = gsap.quickSetter(o.el, "scale"); o.so = gsap.quickSetter(o.el, "opacity");
+      o.front = null;
+    });
     const squash = Math.cos(72 * Math.PI / 180);
     const placeOrbit = (t) => {
       orbitItems.forEach((o) => {
@@ -444,11 +460,17 @@
         const cos = Math.cos(o.ring.tilt), sin = Math.sin(o.ring.tilt);
         [x, y] = [x * cos - y * sin, x * sin + y * cos];
         const depth = Math.sin(a);
-        gsap.set(o.el, { x, y, scale: 0.72 + (depth + 1) * 0.2, zIndex: depth > 0 ? 10 : 1, autoAlpha: 0.55 + (depth + 1) * 0.225 });
+        o.sx(x); o.sy(y); o.ss(0.72 + (depth + 1) * 0.2); o.so(0.55 + (depth + 1) * 0.225);
+        const front = depth > 0;
+        if (front !== o.front) { o.front = front; o.el.style.zIndex = front ? "10" : "1"; }
       });
     };
     placeOrbit(0.6);
-    if (!reduce) gsap.ticker.add((time) => placeOrbit(time));
+    let orbitOn = true;
+    if (!reduce) {
+      gsap.ticker.add((time) => { if (orbitOn) placeOrbit(time); });
+      ScrollTrigger.create({ trigger: orbit, start: "top bottom", end: "bottom top", onToggle: (s) => { orbitOn = s.isActive; } });
+    }
 
     if (reduce) return;
 
@@ -468,10 +490,12 @@
       .add(() => memeToast("Houston, we have a portfolio.", "hello"), 1.8);
 
     // Idle motion
-    gsap.to(".hero_planet.is-ringed", { y: -18, rotation: 5, duration: 4.5, repeat: -1, yoyo: true, ease: "sine.inOut" });
-    gsap.to(".hero_planet.is-small", { y: 14, x: 10, duration: 5.5, repeat: -1, yoyo: true, ease: "sine.inOut" });
-    gsap.to(".hero_satellite", { rotation: 12, x: 40, y: 20, duration: 9, repeat: -1, yoyo: true, ease: "sine.inOut" });
-    gsap.to(".hero_scroll-line", { scaleY: 0.3, duration: 1.1, repeat: -1, yoyo: true, ease: "sine.inOut" });
+    whileVisible(section, [
+      gsap.to(".hero_planet.is-ringed", { y: -18, rotation: 5, duration: 4.5, repeat: -1, yoyo: true, ease: "sine.inOut" }),
+      gsap.to(".hero_planet.is-small", { y: 14, x: 10, duration: 5.5, repeat: -1, yoyo: true, ease: "sine.inOut" }),
+      finePointer ? gsap.to(".hero_satellite", { rotation: 12, x: 40, y: 20, duration: 9, repeat: -1, yoyo: true, ease: "sine.inOut" }) : null,
+      finePointer ? gsap.to(".hero_scroll-line", { scaleY: 0.3, duration: 1.1, repeat: -1, yoyo: true, ease: "sine.inOut" }) : null,
+    ]);
 
     // Shooting stars while the hero is on screen
     let heroActive = true;
@@ -535,7 +559,8 @@
     if (reduce) return;
     $$("[data-float]").forEach((el, i) => {
       const base = gsap.getProperty(el, "rotation");
-      gsap.to(el, { rotation: base + (i % 2 ? -5 : 5), duration: 2.4, repeat: -1, yoyo: true, ease: "sine.inOut" });
+      whileVisible(el, [gsap.to(el, { rotation: base + (i % 2 ? -5 : 5), duration: 2.4, repeat: -1, yoyo: true, ease: "sine.inOut" })]);
+      if (!finePointer) return;
       Draggable.create(el, {
         type: "x,y", inertia: true, zIndexBoost: true,
         onDragStart: () => memeToast("Yes, you can move the stickers. No, they don't do anything. Like a lot of buttons.", "sticker"),
@@ -554,8 +579,11 @@
       const tween = dir > 0
         ? gsap.to(tracks, { xPercent: -100, duration: 26, repeat: -1, ease: "none" })
         : gsap.fromTo(tracks, { xPercent: -100 }, { xPercent: 0, duration: 26, repeat: -1, ease: "none" });
-      let current = 1, lastDir = 1;
+      let current = 1, lastDir = 1, on = false;
+      whileVisible(row, [tween]);
+      ScrollTrigger.create({ trigger: row, start: "top bottom", end: "bottom top", onToggle: (s) => { on = s.isActive; } });
       gsap.ticker.add(() => {
+        if (!on) return;
         if (state.dy !== 0) lastDir = state.dy > 0 ? 1 : -1;
         const target = lastDir * (1 + Math.min(Math.abs(state.dy), 80) / 7);
         current += (target - current) * 0.08;
@@ -569,13 +597,17 @@
   function about() {
     if (reduce) return;
     const scrub = $("[data-word-scrub]");
-    const split = SplitText.create(scrub.querySelectorAll("p"), { type: "words", wordsClass: "word" });
-    gsap.fromTo(split.words, { opacity: 0.16 }, { opacity: 1, stagger: 0.02, ease: "none", scrollTrigger: { trigger: scrub, start: "top 78%", end: "bottom 50%", scrub: true } });
+    if (finePointer) {
+      const split = SplitText.create(scrub.querySelectorAll("p"), { type: "words", wordsClass: "word" });
+      gsap.fromTo(split.words, { opacity: 0.16 }, { opacity: 1, stagger: 0.02, ease: "none", scrollTrigger: { trigger: scrub, start: "top 78%", end: "bottom 50%", scrub: true } });
+    } else {
+      gsap.from(scrub.children, { y: 30, autoAlpha: 0, stagger: 0.12, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: scrub, start: "top 85%", once: true } });
+    }
 
     const constellation = $("[data-constellation]");
     gsap.from(constellation.querySelector("path"), { drawSVG: 0, ease: "none", scrollTrigger: { trigger: constellation, start: "top 90%", end: "bottom 50%", scrub: true } });
     gsap.from(constellation.querySelectorAll("circle"), { scale: 0, transformOrigin: "50% 50%", stagger: 0.12, duration: 0.6, ease: "back.out(3)", scrollTrigger: { trigger: constellation, start: "top 85%", once: true } });
-    gsap.to(constellation.querySelectorAll("circle"), { opacity: 0.35, duration: 1.2, stagger: { each: 0.3, repeat: -1, yoyo: true } });
+    whileVisible(constellation, [gsap.to(constellation.querySelectorAll("circle"), { opacity: 0.35, duration: 1.2, stagger: { each: 0.3, repeat: -1, yoyo: true } })]);
 
     const visual = $("[data-tilt]");
     const porthole = $(".about_porthole");
@@ -665,8 +697,10 @@
     }
     const hills = card.querySelector("[data-hills]");
     if (hills && !reduce) {
-      gsap.to(hills.querySelector("[data-hills-pill]"), { keyframes: [{ x: 80 }, { x: 160 }, { x: 80 }, { x: 0 }], duration: 5, repeat: -1, ease: "power2.inOut" });
-      [1, 2, 3].forEach((n) => gsap.to(hills.querySelector(`[data-hill='${n}']`), { x: n * 14, duration: 3 + n, repeat: -1, yoyo: true, ease: "sine.inOut" }));
+      whileVisible(card, [
+        gsap.to(hills.querySelector("[data-hills-pill]"), { keyframes: [{ x: 80 }, { x: 160 }, { x: 80 }, { x: 0 }], duration: 5, repeat: -1, ease: "power2.inOut" }),
+        ...[1, 2, 3].map((n) => gsap.to(hills.querySelector(`[data-hill='${n}']`), { x: n * 14, duration: 3 + n, repeat: -1, yoyo: true, ease: "sine.inOut" })),
+      ]);
     }
     const grid = card.querySelector("[data-listings-grid]");
     if (grid) {
@@ -681,8 +715,7 @@
     if (url) {
       gsap.to(url, { duration: 1.2 * d, text: url.dataset.text, ease: "none", delay: 0.3 * d });
       if (!reduce) {
-        gsap.to(card.querySelector(".viz-browser_caret"), { autoAlpha: 0, duration: 0.5, repeat: -1, yoyo: true, ease: "steps(1)" });
-        gsap.to(card.querySelectorAll(".viz-browser_icon"), { motionPath: { path: [{ x: 0, y: 0 }, { x: 40, y: -30 }, { x: 0, y: -50 }, { x: -40, y: -20 }, { x: 0, y: 0 }], curviness: 1.5 }, duration: 4, repeat: -1, ease: "none", stagger: 2 });
+        whileVisible(card, [gsap.to(card.querySelector(".viz-browser_caret"), { autoAlpha: 0, duration: 0.5, repeat: -1, yoyo: true, ease: "steps(1)" }), gsap.to(card.querySelectorAll(".viz-browser_icon"), { motionPath: { path: [{ x: 0, y: 0 }, { x: 40, y: -30 }, { x: 0, y: -50 }, { x: -40, y: -20 }, { x: 0, y: 0 }], curviness: 1.5 }, duration: 4, repeat: -1, ease: "none", stagger: 2 })]);
       }
     }
   }
@@ -720,7 +753,7 @@
       if (!reduce) gsap.utils.toArray(cards).forEach((card) => gsap.from(card, { y: 80, rotationX: -18, transformPerspective: 1000, autoAlpha: 0, duration: 1, ease: "expo.out", scrollTrigger: { trigger: card, start: "top 88%", once: true } }));
     });
 
-    if (!reduce) gsap.to(".work_orb", { y: -16, rotation: 4, duration: 3.2, repeat: -1, yoyo: true, ease: "sine.inOut", stagger: 0.6 });
+    if (!reduce) $$(".work_orb").forEach((orb, i) => whileVisible(orb, [gsap.to(orb, { y: -16, rotation: 4, duration: 3.2, repeat: -1, yoyo: true, ease: "sine.inOut", delay: i * 0.6 })]));
 
     // Full-page screenshots: hover (or scroll into view on touch) runs down the whole page
     $$("[data-shot]").forEach((shot) => {
@@ -769,7 +802,7 @@
         },
       });
       faces();
-      gsap.to(".how_orbit", { scale: 1.04, duration: 2.4, repeat: -1, yoyo: true, ease: "sine.inOut" });
+      whileVisible(pin, [gsap.to(".how_orbit", { scale: 1.04, duration: 2.4, repeat: -1, yoyo: true, ease: "sine.inOut" })]);
       const drake = $(".drake_component");
       gsap.from(drake, { scale: 0, rotation: -25, duration: 0.8, ease: "back.out(2)", scrollTrigger: { trigger: pin, start: "top top", end: () => `+=${innerHeight}`, toggleActions: "play none none reverse" } });
       return () => gsap.set([ring, ...cards], { clearProps: "all" });
@@ -889,12 +922,12 @@
       }, diagram);
     };
     build();
-    let resizeTimer;
-    addEventListener("resize", () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(build, 250); });
+    let resizeTimer, builtW = innerWidth;
+    addEventListener("resize", () => { if (innerWidth === builtW) return; builtW = innerWidth; clearTimeout(resizeTimer); resizeTimer = setTimeout(build, 250); });
     document.fonts?.ready.then(build);
     if (reduce) return;
     gsap.from("[data-node-in], [data-node-out]", { scale: 0.6, autoAlpha: 0, stagger: 0.12, duration: 0.8, ease: "back.out(2)", scrollTrigger: { trigger: diagram, start: "top 80%", once: true } });
-    gsap.to("[data-node-core]", { scale: 1.06, duration: 1.2, repeat: -1, yoyo: true, ease: "sine.inOut" });
+    whileVisible(diagram, [gsap.to("[data-node-core]", { scale: 1.06, duration: 1.2, repeat: -1, yoyo: true, ease: "sine.inOut" })]);
     $$("[data-brain]").forEach((row, i) => {
       gsap.from(row, { x: i % 2 ? 80 : -80, autoAlpha: 0, duration: 0.9, ease: "expo.out", scrollTrigger: { trigger: row, start: "top 88%", once: true } });
       gsap.from(row.querySelector(".brain_icon path"), { scale: 0.6 + i * 0.1, transformOrigin: "50% 50%", duration: 1.2, ease: "elastic.out(1, 0.5)", scrollTrigger: { trigger: row, start: "top 85%", once: true } });
@@ -1029,7 +1062,7 @@
     let launched = false;
     gsap.set(fire, { scaleY: 0.3, transformOrigin: "50% 0%" });
     gsap.set(ring, { drawSVG: 0 });
-    if (!reduce) gsap.to(fire, { scaleX: 0.8, duration: 0.07, repeat: -1, yoyo: true, transformOrigin: "50% 0%" });
+    if (!reduce) whileVisible(btn, [gsap.to(fire, { scaleX: 0.8, duration: 0.07, repeat: -1, yoyo: true, transformOrigin: "50% 0%" })]);
 
     const charge = gsap.timeline({ paused: true, onComplete: () => launch() })
       .to(ring, { drawSVG: "100%", duration: 1.4, ease: "none" }, 0)
@@ -1086,10 +1119,11 @@
     if (reduce) return;
     const mark = $("[data-wordmark]");
     const split = SplitText.create(mark, { type: "chars", charsClass: "char" });
-    gsap.from(split.chars, { yPercent: 100, rotationX: -90, transformPerspective: 700, stagger: 0.04, ease: "back.out(1.6)", scrollTrigger: { trigger: mark, start: "top 95%", end: "bottom 85%", scrub: 1 } });
+    const from = finePointer ? { yPercent: 100, rotationX: -90, transformPerspective: 700 } : { yPercent: 60, autoAlpha: 0 };
+    gsap.from(split.chars, { ...from, stagger: 0.04, ease: "back.out(1.6)", scrollTrigger: { trigger: mark, start: "top 95%", end: "bottom 85%", scrub: 1 } });
     if (finePointer) split.chars.forEach((c) => c.addEventListener("pointerenter", () => {
       gsap.fromTo(c, { y: 0 }, { y: -30, duration: 0.25, yoyo: true, repeat: 1, ease: "power2.out" });
-      gsap.fromTo(c, { color: "#ffb547" }, { color: "transparent", duration: 1.2 });
+      gsap.fromTo(c, { color: "#ffb547" }, { color: "#05061a", duration: 1.2, clearProps: "color" });
     }));
   }
 
